@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //CHANGING TO FAHRENHEIT
+
+      var celsius = Number(
+        prompt("prompt the user to enter a value in celsius")
+      );
+      var fahrenheit = Math.floor((celsius * 9) / 5 + 32);
+
+      alert(" fahrenheit value is: " + fahrenheit);
+
+      // ENTER THE DAY
+
+      var day = prompt("enter the day of the week");
+
+      var prompt;
+
+      switch (day) {
+        case "Tuesday":
+          prompt = "today is Tuesday! go to classes!";
+          break;
+
+        case "Thusday":
+          prompt = "today is Thusday! go to classes!";
+          break;
+
+        case "Saturday":
+          prompt = "today is Saturday! do laudry!";
+          break;
+
+        default:
+          prompt = "take it easy, go back to bed!";
+      }
+
+      alert(prompt);
+
+      // GRADER CALCULATOR
+
+      var grade = Number(prompt("enter your grade"));
+
+      var calculator;
+
+      switch (grade) {
+        case grade >= 90 && grade <= 100:
+          calculator = "A+";
+          break;
+
+        case 80 <= grade && grade <= 89:
+          calculator = "A";
+          break;
+
+        case 75 <= grade && grade <= 79:
+          calculator = "B+";
+          break;
+
+        case 70 <= grade && grade <= 74:
+          calculator = "B";
+          break;
+
+        case 65 <= grade && grade <= 69:
+          calculator = "C+";
+          break;
+
+        case 60 <= grade && grade <= 64:
+          calculator = "C";
+          break;
+
+        case 55 <= grade && grade <= 59:
+          calculator = "D+";
+          break;
+
+        case 50 <= grade && grade <= 54:
+          calculator = "D";
+          break;
+
+        case 0 <= grade && grade <= 49:
+          calculator = "F";
+          break;
+
+        default:
+          calculator =
+            "something go wrong, please reload the page and put a number";
+      }
+
+      alert(calculator);
+    </script>
+  </body>
+</html>

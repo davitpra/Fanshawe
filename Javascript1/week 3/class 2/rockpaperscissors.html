@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Paper Scissors Game</title>
+</head>
+<body>
+    <script>
+        /*
+        Ask the user for a selection And to choose between rock, paper or scissors
+
+        Generate a random number between 0 and 2
+
+        randomly assign 0, 1 or 2 to rock paper scissors
+
+        Look at the user's choice, compare it to the computer's choice and evaluate on rock paper scissors game rules:
+
+        if the user chooses rock
+            if the computer chooses rock - its a tie
+            if the computer chooses paper - user loses
+            otherwise computer chooses scissors - user wins
+        if the user chooses paper
+            if the comp chooses paper - tie
+            if the comp chooses rock - user wins
+            otherwise the comp chooses scissors - user loses
+        if the user chooses scissors
+            ....
+            ....
+        */
+
+        //prompt the user to make a choice
+        var userChoice = prompt("Rock Paper Scissors Game!\nPlease choose:\nR = Rock\nP = Paper\nS = Scissors");
+
+        //we have three possible values so we need a range between 0 and 2
+        var randChoiceNum = Math.floor((Math.random() * 3));
+
+        //variable to hold value of r p s
+        var randChoiceVal;
+
+        //0 = R (rock), 1 = P (paper), 2 = S (scissors)
+        if (randChoiceNum === 0) {
+            randChoiceVal = "R";
+        }
+        else if (randChoiceNum === 1) {
+            randChoiceVal = "P";
+        }
+        else {
+            randChoiceVal = "S";
+        }
+
+        //Test against the user's input
+        if (userChoice === "R") {
+            if (randChoiceVal === userChoice) {
+                alert("You chose " + userChoice + ". " + "Your opponent chose " + randChoiceVal + ". You have tied!");
+            }
+            else if (randChoiceVal === "P") {
+                alert("You chose " + userChoice + ". " + "Your opponent chose " + randChoiceVal + ". You lose!");
+            }
+            else {
+                alert("You chose " + userChoice + ". " + "Your opponent chose " + randChoiceVal + ". You win!");
+            }
+        }
+        else if (userChoice === "P") {
+            if(randChoiceVal === userChoice) {
+                alert("You chose " + userChoice + ". " + "Your opponent chose " + randChoiceVal + ". You have tied!");
+            }
+            else if (randChoiceVal === "S") {
+                alert("You chose " + userChoice + ". " + "Your opponent chose " + randChoiceVal + ". You lose!");
+            }
+            else {
+                alert("You chose " + userChoice + ". " + "Your opponent chose " + randChoiceVal + ". You win!");
+            }
+        }
+        else if (userChoice === "S") {
+            if(randChoiceVal === userChoice) {
+                alert("You chose " + userChoice + ". " + "Your opponent chose " + randChoiceVal + ". You have tied!");
+            }
+            else if (randChoiceVal === "R") {
+                alert("You chose " + userChoice + ". " + "Your opponent chose " + randChoiceVal + ". You lose!");
+            }
+            else {
+                alert("You chose " + userChoice + ". " + "Your opponent chose " + randChoiceVal + ". You win!");
+            }
+        }
+        else {
+            alert("You did not provide a valid input.");
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Internet Service Calculator</title>
+  </head>
+  <body>
+    <script>
+      // PART 2
+
+      // a)
+      var billDate = prompt("Enter the current billing month and year:");
+      // b)
+      var subscriptionPackage = prompt(
+        "Enter the current billing month and year:\n Package 1: 10 hours internet access\n Package 2: 20 hours internet access\n Package 3: Unlimited internet access\n Enter 1, 2, or 3"
+      );
+      // c)
+      var hoursOfInternet = Number(
+        prompt(
+          `Enter the number of hours you used the internet for the month of ${billDate}`
+        )
+      );
+
+      // PART 3
+
+      // a)
+      var monthlyFee;
+
+      if (subscriptionPackage == "1") {
+        if (hoursOfInternet <= 10) {
+          monthlyFee = 9.95;
+        } else {
+          monthlyFee = 9.95 + (hoursOfInternet - 10) * 2;
+        }
+      }
+      // b)
+      if (subscriptionPackage == "2") {
+        if (hoursOfInternet <= 20) {
+          monthlyFee = 13.95;
+        } else {
+          monthlyFee = 13.95 + (hoursOfInternet - 20) * 1;
+        }
+      }
+      // c)
+      if (subscriptionPackage == "3") {
+        monthlyFee = 19.95;
+      }
+
+      //PART 4
+      //Output information:
+      document.write("<h1>Internet Service Calculator</h1>");
+      document.write(`<p> Service Bill for ${billDate} </p>`);
+      document.write(`<p> Internet Package: ${subscriptionPackage} </p>`);
+      document.write(`<p> Hours used: ${hoursOfInternet} </p>`);
+      document.write(
+        `<p> Service Fee (before tax): $${monthlyFee.toFixed(2)} </p>`
+      );
+    </script>
+  </body>
+</html>

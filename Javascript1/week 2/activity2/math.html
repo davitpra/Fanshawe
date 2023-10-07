@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Math library ramdom number generator</title>
+  </head>
+  <body>
+    <script>
+      alert(" Welcome to ramdom number generator.");
+      var nummin = prompt(" write a number as a min ");
+      var nummax = prompt(" write a number as maximun");
+      // generate a number is ramdom between 2 numbers
+      var ramdomNUmber = Math.floor(
+        Math.random() * (nummax - nummin + 1) + nummin
+      );
+      alert(ramdomNUmber);
+    </script>
+  </body>
+</html>

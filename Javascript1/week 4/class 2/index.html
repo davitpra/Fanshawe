@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>week 4</title>
+  </head>
+  <body>
+    <script>
+      //run a tables of multiplication of 0 - 10 between 0-5
+      var i;
+      var j;
+      for (i = 0; i <= 10; i++) {
+        document.write(`<p> Table for: ${i} </p> `);
+        for (j = 0; j <= 5; j++) {
+          document.write(` ${i} x ${j} = ${i * j} <br>`);
+        }
+      }
+      document.write("<br>");
+
+      //output even number from 10 -40
+      var i = 10;
+      while (i <= 40) {
+        if (i % 2 === 0) {
+          console.log(i);
+          document.write(i);
+          document.write("<br>");
+        }
+        i += 1;
+      }
+      document.write("<br>");
+
+      //output odd number from 1 -19
+      var i = 1;
+      while (i <= 19) {
+        if (i % 2 == !0) {
+          document.write(i);
+          document.write("<br>");
+        }
+        i += 1;
+      }
+      document.write("<br>");
+
+      //output backwards from 15-1
+      var i = 15;
+      while (i >= 1) {
+        document.write(i);
+        document.write("<br>");
+        i -= 1;
+      }
+      document.write("<br>");
+
+      //output from 3 -30  by 3
+      var i = 3;
+      while (i <= 30) {
+        document.write(i);
+        document.write("<br>");
+        i += 3;
+      }
+      document.write("<br>");
+
+      //sum of the numbers from 0 to 10
+
+      var i = 0;
+      var sum = 0;
+      while (i <= 10) {
+        sum = sum + i;
+        i += 1;
+      }
+
+      document.write(sum);
+      document.write("<br>");
+
+      //sum of the even numbers from 0 to 20
+
+      var i = 0;
+      var sum = 0;
+      while (i <= 20) {
+        if (i % 2 === 0) {
+          sum = sum + i;
+        }
+        i += 1;
+      }
+      document.write(sum);
+      document.write("<br>");
+    </script>
+  </body>
+</html>

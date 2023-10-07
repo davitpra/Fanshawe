@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Activity 1</title>
+  </head>
+  <body>
+    <script>
+      var name = prompt("Enter your name");
+      alert("Welcome to IWD JavaScript 1" + name);
+
+      const DEFAULT_VALUE = 100;
+
+      var numClass = 0;
+      var sumGrades = 0;
+
+      var BUSI116, INFO1251, INFO1272, INFO1273, INFO1252;
+
+      BUSI116 = parseFloat(prompt("Enter your grade on BUSI116"));
+      ++numClass;
+      sumGrades += BUSI116;
+      console.log("Your grede for BUSI116 is" + BUSI116);
+
+      INFO1251 = parseFloat(prompt("Enter your grade on INFO1251"));
+      ++numClass;
+      sumGrades += INFO1251;
+      console.log("Your grede for INFO1251 is" + INFO1251);
+
+      INFO1272 = parseFloat(prompt("Enter your grade on INFO1272"));
+      ++numClass;
+      sumGrades += INFO1272;
+      console.log("Your grede for INFO1251 is" + INFO1272);
+
+      INFO1273 = parseFloat(prompt("Enter your grade on INFO1273"));
+      ++numClass;
+      sumGrades += INFO1273;
+      console.log("Your grede for INFO1273 is" + INFO1273);
+
+      INFO1252 = parseFloat(prompt("Enter your grade on INFO1252"));
+      ++numClass;
+      sumGrades += INFO1252;
+      console.log("Your grede for INFO1252 is" + INFO1252);
+
+      //   var sumGrades = BUSI116 + INFO1251 + INFO1272 + INFO1273 + INFO1252;
+      var avarage = sumGrades / numClass;
+
+      console.log(
+        name +
+          ", your avarage for you " +
+          numClass +
+          " clases is " +
+          avarage.toFixed(2)
+      );
+    </script>
+  </body>
+</html>

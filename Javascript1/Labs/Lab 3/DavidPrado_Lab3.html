@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lab 3 - David Prado</title>
+  </head>
+  <body>
+    <script>
+      // seated total values on 0 for final bill.
+      var totalOptionA = 0;
+      var totalOptionB = 0;
+      var totalOptionC = 0;
+      var totalOptionD = 0;
+      var totalPrice = 0;
+
+      // STAR order value with true
+      var order = true;
+
+      // Ask how many people are ordering.
+      var people = Number(prompt("How many people are ordering food?"));
+
+      //START for cycle until reach amount of people.
+      for (i = 1; i <= people; i++) {
+        // seated order values on 0 for customer's bill
+        var optionA = 0;
+        var optionB = 0;
+        var optionC = 0;
+        var optionD = 0;
+        var custumerPrice = 0;
+
+        //START while cicle until order change to FALSE
+        while (order) {
+          // prompt orders options
+          var option = prompt(`
+          Hello custumer #${i}
+          Enter meal option (A, B, C, D)
+          A- Hamburger and Fries: $9.95
+          B- Soup and Salad: $13.50
+          C- Turkey Wrap and Veggies: $7.95
+          D- Hot Dog and Onion Rings: $11.50
+          `);
+
+          //the client's total price and option counter increases depending on the option made
+          if (option === "A") {
+            custumerPrice = custumerPrice + 9.95;
+            optionA = optionA + 1;
+          }
+          if (option === "B") {
+            custumerPrice = custumerPrice + 13.5;
+            optionB = optionB + 1;
+          }
+          if (option === "C") {
+            custumerPrice = custumerPrice + 7.95;
+            optionC = optionC + 1;
+          }
+          if (option === "D") {
+            custumerPrice = custumerPrice + 11.5;
+            optionD = optionD + 1;
+          }
+
+          // display an option to confirm that the customer is continue ordering.
+          // if order change to FALSE, while cycle STOPS
+          order = confirm("Would you like to order another meal?");
+        }
+
+        //count of total custumers options.
+        options = optionA + optionB + optionC + optionD;
+
+        //display on console the custumer's bills
+        console.log(`Custumer ${i} here is your order:`);
+        console.log(`${optionA} of Meal Option A`);
+        console.log(`${optionB} of Meal Option B`);
+        console.log(`${optionC} of Meal Option C`);
+        console.log(`${optionD} of Meal Option D`);
+        console.log(
+          `The total for your ${options} meal(s) is: $${custumerPrice.toFixed(
+            2
+          )}`
+        );
+        console.log("-------------------------------");
+
+        // increases the total amount for the final bill.
+        totalOptionA = totalOptionA + optionA;
+        totalOptionB = totalOptionB + optionB;
+        totalOptionC = totalOptionC + optionC;
+        totalOptionD = totalOptionD + optionD;
+        totalPrice = totalPrice + custumerPrice;
+
+        //order is changed true to start while cycle for the next custumer.
+        order = true;
+      }
+
+      //display on console the final bill with the total amounts
+      console.log(`Total number of Meal A: ${totalOptionA}`);
+      console.log(`Total number of Meal B: ${totalOptionB}`);
+      console.log(`Total number of Meal C: ${totalOptionC}`);
+      console.log(`Total number of Meal D: ${totalOptionD}`);
+      console.log(
+        `The gran total for ${people} custumer is $${totalPrice.toFixed(2)}`
+      );
+    </script>
+  </body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boolean Operators</title>
+</head>
+<body>
+    <script>
+        //Q1:
+        var question = confirm("Do you wish to continue? Select OK for yes, and cancel for no");
+
+        if(question){ //true
+            var whatToDo = prompt("What would you like to do?");
+        }
+        else {
+            alert("Goodbye!");
+        }
+
+        //Activity 1
+        var number = Number(prompt("Enter a number between 0 and 100"));
+
+        if(number >= 0 && number <= 100) {
+            alert("Your number is between 0 and 100");
+        }
+        else {
+            alert("Your number is NOT between 0 and 100");
+        }
+        
+        //Activity 2
+        var age = 19;
+        var car = true;
+        var license = true;
+
+        if (age >= 16 && car && license) {
+            alert("You can drive!");
+        }
+        else {
+            alert("Sorry you can't drive.");
+        }
+
+        //Activity 3
+        var temp = 0;
+        var precipitation = true;
+
+        if(temp < 0 || precipitation) {
+            alert("You should wear boots");
+        }
+        else {
+            alert("You can wear sneakers");
+        }
+
+        //Activity 4
+        var dayOfTheWeek = "Tuesday";
+        if (!(dayOfTheWeek == "Sunday" || dayOfTheWeek == "Saturday")) {
+            alert("Get back to work");
+        }
+        else {
+            alert("It's the weekend!");
+        }
+
+        //Activity 5
+        var name = prompt("enter your name:");
+        var phone = prompt("enter your phone number:");
+
+        if (name === "" || phone === "") { 
+            alert("You have not entered your info properly");
+        }
+        else {
+            alert("Thanks for your entry!");
+        }
+
+    </script>
+</body>
+</html>
