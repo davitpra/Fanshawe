@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>David's Midtermn Test - Part B</title>
+  </head>
+  <body>
+    <script>
+      var balance = 5000.0;
+      const INTEREST_RATE = 0.05;
+      var newBalance;
+      var anotherTransaction = true;
+
+      // deposit functionality
+      function deposit() {
+        var amountDeposit = Number(
+          prompt("How much would you like to deposit?")
+        );
+        newBalance = balance + amountDeposit;
+
+        alert(`
+          Deposit: $${amountDeposit.toFixed(2)}
+          Balance: $${balance.toFixed(2)} ---> $${newBalance.toFixed(2)}
+        `);
+
+        // changing the current balance
+        balance = newBalance;
+      }
+
+      // withdraw functionality
+      function withdraw() {
+        var amountWithdraw = Number(
+          prompt("How much would you like to withdraw?")
+        );
+
+        var checkBalance = balance - amountWithdraw;
+
+        // checking if the user have enough money in their account
+        if (checkBalance >= 0) {
+          newBalance = balance - amountWithdraw;
+          alert(`
+            Deposit: $${amountWithdraw.toFixed(2)}
+            Balance: $${balance.toFixed(2)} ---> $${newBalance.toFixed(2)}
+          `);
+
+          // changing the current balance
+          balance = newBalance;
+        } else {
+          alert("Insufficient funds for withdrawal");
+        }
+      }
+
+      //view Balance functionality
+      function viewBalance() {
+        alert(`
+        Current Balance: $${balance.toFixed(2)}
+        `);
+      }
+
+      //calculate interest functionality
+      function calculateInterest() {
+        var months = Number(prompt("How many months do you want to simulate"));
+
+        var oldProjection;
+        var newProjection = balance;
+
+        for (i = 1; i <= months; i++) {
+          oldProjection = newProjection;
+          newProjection = oldProjection * INTEREST_RATE + oldProjection;
+
+          console.log(
+            `Month ${i}: $${oldProjection.toFixed(
+              2
+            )} x ${INTEREST_RATE}% = $${newProjection.toFixed(2)}`
+          );
+        }
+      }
+
+      // user transaction choices
+      while (anotherTransaction) {
+        var transaction = prompt(`
+        What transaction would you like to perform today?
+        B - Show Balance
+        D - Deposit
+        W - Withdrawal
+        C - calculate annual interest
+        `);
+
+        if (transaction == "B") {
+          viewBalance();
+        } else if (transaction == "D") {
+          deposit();
+        } else if (transaction == "W") {
+          withdraw();
+        } else if (transaction == "C") {
+          calculateInterest();
+        } else {
+          alert("Invalid Selection");
+        }
+
+        anotherTransaction = confirm(
+          "Would you like to perform another transaction? OK == yes | CANCEL == no"
+        );
+      }
+      alert("Thanks for you message");
+    </script>
+  </body>
+</html>
