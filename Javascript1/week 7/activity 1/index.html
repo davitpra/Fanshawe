@@ -1,0 +1,133 @@
+<html>
+    <head>
+        <title>Form Elements Class EX</title>
+    </head>
+    <body>
+        <h1>Form Elements Class Example</h1>
+        <hr>
+        <p id="shipping_Info">Welcome to the INFO-1272 shipping company.<br>
+        We are a company based in London, Ontario, Canada.<br>
+        <a href="JavaScript:void(0) " onclick="changeShippingInfo();">Click for more</a></p>
+
+        <!-- Form Elements -->
+        <p>Destination Country:
+            <input type="text" id="tb_Destination" />
+        </p>
+        <p> Package Weight:
+            <input type="text" id="tb_Weight" placeholder="Enter a number"/>
+            <div id="dWeight"></div>
+        </p>
+        
+
+        <p> Message (cost $2.50):<br>
+          <textarea id="ta_message" placeholder="Enter an optional message for the recipient of the package" cols=50></textarea>
+        </p>
+        <!-- Checkboxes -->
+        <p>
+            <input type="checkbox" id="cb_Free" disabled/> Free Shipping
+            <br>
+            <input type="checkbox" id="cb_Terms" disabled/> Accept Terms and Conditions <a href="JavaScript:void(0)" onclick="showTerms();">Terms and Conditions</a>
+        </p>
+        <div>
+          <p id="p_Cost"> Your total is: $0.00 </p>
+
+        </div>
+        <!-- Buttons -->
+        <p> 
+            <input type="button" onclick="calculateTotal()" value="Calculate Total"/>
+            <input type="button" value="Ship" onclick="shipPackage()"/>
+        </p>
+        <br/>
+
+        <!-- Javascript Code -->
+        <script>
+            var shippingInfoLong = "Welcome to the INFO-1272 shipping company.<br>" +
+                                "We are a company based in London, Ontario, Canada.<br>" +
+                                "Our motto is: If we can't ship it today, then we'll go away!<br>" +
+                                "If you have any questions please contact us!";
+
+            function changeShippingInfo(){
+             // More information about the company
+             document.getElementById("shipping_Info").innerHTML=shippingInfoLong;   
+            }
+
+            let destCountry =document.getElementById("tb_Destination");
+            
+            function checkDestination(){
+                // obtiene el valor, lo convierte a mayuscula y elimina los espacios de inicio y final
+                let destination =destCountry.value.toUpperCase().trim();
+                
+                if(destination=="CANADA"){
+                    
+                    document.getElementById("cb_Free").checked=true;
+                }else{
+                    document.getElementById("cb_Free").checked=false;
+                }
+            }
+
+            //IMPORTANT!
+            destCountry.onchange=checkDestination;
+
+
+              //Move me inside your function to alert the terms and conditions!
+            var termsText =  "PLEASE READ THESE TERMS AND CONDITIONS CAREFULLY " +
+                          "AS THEY CONTAIN IMPORTANT INFORMATION REGARDING YOUR " +
+                          "LEGAL RIGHTS, REMEDIES AND OBLIGATIONS. " +
+                          "THESE INCLUDE, BUT ARE NOT LIMITED TO, VARIOUS LIMITATIONS " +
+                          "AND EXCLUSIONS, AND INDEMNITIES.";
+
+            let termsNConditions =document.getElementById("cb_Terms");
+            termsNConditions.disabled=true;
+            termsNConditions.checked=false
+            
+            function showTerms(){
+
+                alert(termsText);
+                termsNConditions.disabled=false;
+            }
+
+            var weightInput = document.getElementById("tb_Weight");
+
+            function validateWeightInput(){
+
+                let weightValue = weightInput.value;
+                if(isNaN(weightValue)){
+                    weightInput.style.backgroundColor="red";
+                    document.getElementById("dWeight").innerHTML= "Invalid Input. Please enter a number";  
+                }
+            }
+
+            //IMPORTANT!
+            weightInput.onblur= validateWeightInput;
+
+            function clearInput(){
+                weightInput.value="";
+                weightInput.style.backgroundColor= "white";
+                document.getElementById("dWeight").innerHTML="";
+            }
+
+            weightInput.onclick= clearInput;
+            let total=0;
+            function calculateTotal (){
+                
+                total = 0.75 * Number(weightInput.value);
+                let countryValue = destCountry.value.toLowerCase();
+
+                if(document.getElementById("ta_message").value.trim().length>0 && countryValue!="CANADA"){
+                    total = total +2.50;
+                }
+
+                document.getElementById("p_Cost").innerHTML=`Your total is: $${total}`;
+            }
+
+            function shipPackage (){
+                if(!termsNConditions.checked){
+                    alert('You must accept the Terms and Conditions');
+                }else{
+                    alert ("Shipping product..  Thank You for shopping with us $"+total.toFixed(2))
+                }
+            }
+
+        </script>
+    </body>
+</html>
