@@ -1,0 +1,110 @@
+<!--
+Name: David Prado
+Date: 18 October 
+-->
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Lab 4</title>
+    <style>
+      body {
+        font-family: Arial;
+        background-color: #ccffff;
+        color: #0a126b;
+        font-size: 150%;
+      }
+
+      #output {
+        border: 12px double #202775;
+        color: #523620;
+        text-align: center;
+        padding: 20px;
+        margin: 20px auto 10px auto;
+        width: 450px;
+        float: right;
+      }
+
+      .button {
+        font-family: Arial;
+        font-size: 14pt;
+        color: white;
+        background-color: #202775;
+      }
+
+      #tbOperator {
+        width: 10rem;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Math Drills</h1>
+    <!-- Math Operator Input -->
+    Select an arithmetic operation (* or +):
+    <select id="tbOperator">
+      <option value="*">*</option>
+      <option value="+">+</option>
+    </select>
+    <br />
+    <br />
+
+    <!-- Integer Input -->
+    Enter a positive integer value between 1 and 100:
+    <input type="text" id="tbInteger" />
+    <br />
+    <br />
+
+    <!-- Buttons -->
+    <input type="button" value="Calculate" class="button" id="calculate" />
+    <input type="button" value="Clear" class="button" id="clear" />
+
+    <!-- Output -->
+    <div id="output"></div>
+
+    <!-- Javascript -->
+    <script>
+      let tbOperator = document.getElementById("tbOperator");
+      let tbInteger = document.getElementById("tbInteger");
+      let output = document.getElementById("output");
+      let calculate = document.getElementById("calculate");
+      let clear = document.getElementById("clear");
+
+      function Calculate() {
+        let number = Number(tbInteger.value);
+        let operator = tbOperator.value;
+        let result;
+        let message;
+
+        output.innerHTML = "";
+
+        if (isNaN(number) || number > 100 || number < 1) {
+          alert("please submit a number between 1 to 100 ");
+          return;
+        }
+
+        if (operator === "*") {
+          for (i = 1; i <= 12; i++) {
+            result = i * number;
+            message = `${i} ${operator} ${number} = ${result} <br>`;
+            output.innerHTML += message;
+          }
+        }
+
+        if (operator === "+") {
+          for (i = 1; i <= 12; i++) {
+            result = i + number;
+            message = `${i} ${operator} ${number} = ${result} <br>`;
+            output.innerHTML += message;
+          }
+        }
+      }
+
+      function Clear() {
+        output.innerHTML = "";
+      }
+
+      calculate.onclick = Calculate;
+      clear.onclick = Clear;
+    </script>
+  </body>
+</html>
