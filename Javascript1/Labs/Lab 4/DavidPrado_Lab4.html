@@ -63,46 +63,55 @@ Date: 18 October
 
     <!-- Javascript -->
     <script>
+      // HTML NODES
       let tbOperator = document.getElementById("tbOperator");
       let tbInteger = document.getElementById("tbInteger");
       let output = document.getElementById("output");
       let calculate = document.getElementById("calculate");
       let clear = document.getElementById("clear");
 
+      // Calculation functions
       function Calculate() {
+        // declaration of variables and values
         let number = Number(tbInteger.value);
         let operator = tbOperator.value;
         let result;
         let message;
 
+        //clear the previous output
         output.innerHTML = "";
 
+        // if the user doesn't register a number between 1 to 100
         if (isNaN(number) || number > 100 || number < 1) {
           alert("please submit a number between 1 to 100 ");
           return;
         }
 
+        // if operation is *
         if (operator === "*") {
           for (i = 1; i <= 12; i++) {
             result = i * number;
-            message = `${i} ${operator} ${number} = ${result} <br>`;
+            message = `${i} x ${number} = ${result} <br>`;
             output.innerHTML += message;
           }
         }
 
+        // if operation is +
         if (operator === "+") {
           for (i = 1; i <= 12; i++) {
             result = i + number;
-            message = `${i} ${operator} ${number} = ${result} <br>`;
+            message = `${i} + ${number} = ${result} <br>`;
             output.innerHTML += message;
           }
         }
       }
 
+      //Clear function
       function Clear() {
         output.innerHTML = "";
       }
 
+      // buttons on click events
       calculate.onclick = Calculate;
       clear.onclick = Clear;
     </script>
