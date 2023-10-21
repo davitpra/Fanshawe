@@ -1,0 +1,128 @@
+<html>
+  <head>
+    <style>
+      img {
+        width: 25%;
+        height: 25%;
+        border: 2px solid black;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Slot Machine</h1>
+    <hr />
+
+    <div style="width: 100%; overflow: hidden">
+      <!-- Cash and Betting -->
+      <div style="width: 50%; float: left">
+        <p id="p_Cash">Cash: $$$$.$$</p>
+        <p>
+          Bet: <input type="number" id="tb_Bet" placeholder="Minimum $10 Bet" />
+        </p>
+      </div>
+      <!-- Buttons -->
+      <div style="margin-left: 50%">
+        <input
+          type="button"
+          id="btn_Play"
+          value="Play Slots!"
+          style="padding: 10px"
+        />
+        <input
+          type="button"
+          value="Bet Maximum"
+          style="padding: 10px"
+          id="btn_betMaximum"
+        />
+        <input
+          type="button"
+          value="Reset"
+          style="padding: 10px"
+          id="btn_reset"
+        />
+      </div>
+    </div>
+
+    <!-- Output Message -->
+    <hr />
+    <div id="d_Feedback">Game result!</div>
+    <div id="d_Output">Place your bet to play!</div>
+    <hr />
+
+    <!-- Images -->
+    <div>
+      <img id="img_Slot1" src="default.png" />
+      <img id="img_Slot2" src="default.png" />
+      <img id="img_Slot3" src="default.png" />
+    </div>
+    <hr />
+    <!-- Javascript -->
+    <script>
+      const STARTING_CASH = 1000.0;
+      const MINIMUM_BET = 10.0;
+      let cashOnHand = STARTING_CASH;
+      let imgSrc;
+
+      let tb_Bet = document.getElementById("tb_Bet");
+      let d_Feedback = document.getElementById("d_Feedback");
+      let d_Output = document.getElementById("d_Output");
+      let btn_Play = document.getElementById("btn_Play");
+      let btn_betMaximum = document.getElementById("btn_betMaximum");
+      let p_Cash = document.getElementById("p_Cash");
+      let img_Slot1 = document.getElementById("img_Slot1");
+      let img_Slot2 = document.getElementById("img_Slot2");
+      let img_Slot3 = document.getElementById("img_Slot3");
+
+      function betValidator(bet) {
+        if (isNaN(bet) || bet < MINIMUM_BET || bet > cashOnHand) {
+          d_Output.innerHTML = "Not a valid Bet!, please enter at least $10.00";
+          btn_Play.disabled = true;
+        } else {
+          d_Output.innerHTML = "Valid bet! Play Slots!";
+          btn_Play.disabled = false;
+        }
+      }
+
+      function betMaximum() {
+        tb_Bet.value = cashOnHand;
+      }
+
+      function getImageSource(choice) {
+        if (choice == 1) {
+          imgSrc = "Seven-512.png";
+        }
+        if (choice == 2) {
+          imgSrc = "Cherry-512.png";
+        }
+        if (choice == 3) {
+          imgSrc = "Bell-512.png";
+        }
+      }
+
+      function updateCash() {
+        p_Cash.innerHTML = `Cash: $${cashOnHand.toFixed(2)}`;
+      }
+
+      function messageFeedback(message) {
+        d_Feedback.innerHTML = `Game result: ${message}`;
+      }
+
+      function playSlot() {
+        let bet = Number(tb_Bet.value);
+        betValidator(Number(tb_Bet.value));
+
+        slot1 = Math.floor(Math.random() * (3 + 1));
+        slot2 = Math.floor(Math.random() * (3 + 1));
+        slot3 = Math.floor(Math.random() * (3 + 1));
+
+        img_Slot1.src = getImageSource(slot1);
+        img_Slot2.src = getImageSource(slot2);
+        img_Slot3.src = getImageSource(slot3);
+      }
+
+      updateCash();
+      btn_Play.onclick = playSlot;
+      btn_betMaximum.onclick = betMaximum;
+    </script>
+  </body>
+</html>
