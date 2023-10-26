@@ -1,0 +1,192 @@
+<html>
+  <head>
+    <style>
+      img {
+        width: 25%;
+        height: 25%;
+        border: 2px solid black;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Slot Machine</h1>
+    <hr />
+
+    <div style="width: 100%; overflow: hidden">
+      <!-- Cash and Betting -->
+      <div style="width: 50%; float: left">
+        <p id="p_Cash">Cash: $$$$.$$</p>
+        <p>
+          Bet:
+          <input
+            type="number"
+            oninput="validateBet()"
+            id="tb_Bet"
+            placeholder="Minimum $10 Bet"
+          />
+        </p>
+      </div>
+      <!-- Buttons -->
+      <div style="margin-left: 50%">
+        <input
+          type="button"
+          id="btn_Play"
+          value="Play Slots!"
+          onclick="playGame()"
+          style="padding: 10px"
+        />
+        <input
+          type="button"
+          value="Bet Maximum"
+          onclick="betMax()"
+          style="padding: 10px"
+        />
+        <input
+          type="button"
+          value="Reset"
+          style="padding: 10px"
+          onclick="resetBoard()"
+        />
+      </div>
+    </div>
+
+    <!-- Output Message -->
+    <hr />
+    <div id="d_Output">Place your bet to play!</div>
+    <div id="d_Feedback">Game result!</div>
+    <hr />
+
+    <!-- Images -->
+    <div>
+      <img id="img_Slot1" src="default.png" />
+      <img id="img_Slot2" src="default.png" />
+      <img id="img_Slot3" src="default.png" />
+    </div>
+    <hr />
+    <!-- Javascript -->
+    <script>
+      //Global variables
+      const STARTING_CASH = 1000.0;
+      var cashOnHand = STARTING_CASH;
+
+      //validate bet function
+      function validateBet() {
+        const MINIMUM_BET = 10.0;
+
+        //get the value of the bet input from the user
+        var bet = parseFloat(document.getElementById("tb_Bet").value);
+
+        //if value is not a number, bet amount is less than the minimum bet, or bet is greater than the cash on hand then it's an invalid bet.
+        //disable the play button
+        if (Number.isNaN(bet) || bet < MINIMUM_BET || bet > cashOnHand) {
+          document.getElementById("d_Output").innerHTML =
+            "Not a valid bet! Please enter at least $10.00";
+          document.getElementById("btn_Play").disabled = true;
+        } else {
+          document.getElementById("d_Output").innerHTML =
+            "Valid bet! Play slots!";
+          document.getElementById("btn_Play").disabled = false;
+        }
+      }
+
+      //function to bet all the user's cash on hand
+      function betMax() {
+        document.getElementById("tb_Bet").value = cashOnHand;
+        validateBet();
+      }
+
+      //function to play game
+      function playGame() {
+        //read the bet
+        var bet = parseFloat(document.getElementById("tb_Bet").value);
+        var message = "";
+
+        var slot1 = Math.floor(Math.random() * 3) + 1;
+        var slot2 = Math.floor(Math.random() * 3) + 1;
+        var slot3 = Math.floor(Math.random() * 3) + 1;
+
+        document.getElementById("img_Slot1").src = getImageSource(slot1);
+        document.getElementById("img_Slot2").src = getImageSource(slot2);
+        document.getElementById("img_Slot3").src = getImageSource(slot3);
+
+        if (slot1 === slot2 && slot1 === slot3) {
+          //you're a winner
+          //1- seven
+          //2 - cherry
+          //3 - bell
+          if (slot1 === 1) {
+            cashOnHand = cashOnHand + bet * 2;
+            message = "You won $ " + (bet * 2).toFixed;
+          } else if (slot1 === 2) {
+            cashOnHand = cashOnHand + bet * 1.5;
+            message = "You won $ " + (bet * 1.5).toFixed;
+          } else if (slot1 === 3) {
+            cashOnHand = cashOnHand + bet * 1.25;
+            message = "You won $ " + (bet * 1.25).toFixed;
+          }
+        } else {
+          //you lost
+          cashOnHand = cashOnHand - bet;
+          message = "You lost $ " + bet.toFixed(2);
+        }
+        updateCashLabel();
+        updateMessage(message);
+        validateBet();
+      }
+
+      //function to reset the game
+      function resetBoard() {
+        cashOnHand = STARTING_CASH;
+        updateCashLabel();
+
+        document.getElementById("d_Output").innerHTML =
+          "Place your bet to play!";
+
+        updateMessage("Game result!");
+
+        //reset bet textbox to empty
+        document.getElementById("tb_Bet").value = "";
+
+        //reset images to default
+        document.getElementById("img_Slot1").src = getImageSource(0);
+        document.getElementById("img_Slot2").src = getImageSource(0);
+        document.getElementById("img_Slot3").src = getImageSource(0);
+
+        document.getElementById("btn_Play").disabled = true;
+      }
+
+      //helper functions
+      //helper function for the image sources
+      function getImageSource(choice) {
+        //1 - seven
+        //2 - cherry
+        //3 - bell
+        var imageSrc = "";
+
+        if (choice === 1) {
+          imageSrc = "Seven-512.png";
+        } else if (choice === 2) {
+          imageSrc = "Cherry-512.png";
+        } else if (choice === 3) {
+          imageSrc = "Bell-512.png";
+        } else {
+          imageSrc = "default.png";
+        }
+        return imageSrc;
+      }
+      //update the Cash on Hand Label
+      function updateCashLabel() {
+        document.getElementById("p_Cash").innerHTML =
+          "Cash: $" + cashOnHand.toFixed(2);
+      }
+
+      //update the game result message
+      function updateMessage(msg) {
+        document.getElementById("d_Feedback").innerHTML = msg;
+      }
+
+      //game is reset on page load
+      resetBoard();
+    </script>
+  </body>
+</html>
