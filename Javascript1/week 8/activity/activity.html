@@ -1,0 +1,433 @@
+<html>
+  <body style="background-color: darksalmon">
+    <h1>Name Generator</h1>
+    <hr />
+    <!-- Textbox -->
+    <div style="float: left; width: 50%">
+      <strong>Enter surname for name generation:</strong>
+      <p><input type="text" id="tbSurname" placeholder="Surname" /></p>
+      <p>
+        <strong>Number of Names to Generate: </strong>
+        <select id="ddNumNamesToGenerate">
+          <option value="1">1</option>
+          <option value="3" selected>3</option>
+          <option value="5">5</option>
+          <option value="7">7</option>
+        </select>
+        <input type="button" value="Generate names" onclick="generateName()" />
+      </p>
+    </div>
+    <!-- Radio Buttons -->
+    <div style="float: right; width: 50%">
+      <strong>Select Male or Female names to display:</strong>
+      <p>
+        <input
+          type="radio"
+          name="category"
+          value="Male"
+          onchange="displaySelectedNames()"
+        />
+        Male
+      </p>
+      <p>
+        <input
+          type="radio"
+          name="category"
+          value="Female"
+          onchange="displaySelectedNames()"
+        />
+        Female
+      </p>
+      <p>
+        <input
+          type="radio"
+          name="category"
+          value="Neutral"
+          checked
+          onchange="displaySelectedNames()"
+        />
+        Gender-Neutral
+      </p>
+    </div>
+    <!-- Name List -->
+    <div
+      id="divNamesList"
+      style="
+        border: 2px solid black;
+        margin-top: 15%;
+        height: 200px;
+        overflow: scroll;
+        background-color: white;
+      "
+    ></div>
+    <br />
+    <strong>Generated Names:</strong>
+    <!-- Generated Names -->
+    <div
+      id="divGeneratedList"
+      style="border: 2px solid black; background-color: white"
+    >
+      [Generated names displayed here]
+    </div>
+
+    <!-- Javascript -->
+    <script>
+      //Empty array for the generated names
+      var aGeneratedNames = [];
+
+      // Female Names Array
+      var femaleNames = [
+        "Emily",
+        "Hannah",
+        "Madison",
+        "Ashley",
+        "Sarah",
+        "Alexis",
+        "Danielle",
+        "Gabrielle",
+        "Jordan",
+        "Brooke",
+        "Michelle",
+        "Sierra",
+        "Katelyn",
+        "Andrea",
+        "Madeline",
+        "Sara",
+        "Kimberly",
+        "Courtney",
+        "Brittany",
+        "Vanessa",
+        "Jenna",
+        "Jacqueline",
+        "Caroline",
+        "Faith",
+        "Makayla",
+        "Bailey",
+        "Paige",
+        "Shelby",
+        "Melissa",
+        "Kaylee",
+        "Christina",
+        "Trinity",
+        "Mariah",
+        "Caitlin",
+        "Autumn",
+        "Marissa",
+        "Breanna",
+        "Angela",
+        "Catherine",
+        "Zoe",
+        "Briana",
+        "Jada",
+        "Laura",
+        "Claire",
+        "Alexa",
+        "Kelsey",
+        "Kathryn",
+        "Alexandria",
+        "Sabrina",
+        "Mia",
+        "Isabel",
+        "Molly",
+        "Leah",
+        "Katie",
+        "Gabriella",
+        "Jamie",
+        "Daniela",
+        "Angelina",
+        "Kaitlin",
+        "Karina",
+        "Sophie",
+        "Sofia",
+        "Diamond",
+        "Cynthia",
+        "Alexia",
+        "Valerie",
+        "Monica",
+        "Carly",
+        "Bianca",
+        "Hanna",
+        "Brenda",
+        "Rebekah",
+        "Alejandra",
+        "Mya",
+        "Avery",
+        "Brooklyn",
+        "Ashlyn",
+        "Lindsay",
+        "Ava",
+        "Desiree",
+        "Alondra",
+        "Camryn",
+        "Ariel",
+        "Naomi",
+        "Kendra",
+        "Mckenna",
+      ];
+
+      // Male Names Array
+      var maleNames = [
+        "Jacob",
+        "Michael",
+        "Matthew",
+        "Joshua",
+        "Christopher",
+        "Nicholas",
+        "Andrew",
+        "Joseph",
+        "Daniel",
+        "Tyler",
+        "William",
+        "Brandon",
+        "Ryan",
+        "John",
+        "Zachary",
+        "David",
+        "Anthony",
+        "James",
+        "Justin",
+        "Alexander",
+        "Jonathan",
+        "Christian",
+        "Austin",
+        "Ethan",
+        "Benjamin",
+        "Noah",
+        "Samuel",
+        "Robert",
+        "Nathan",
+        "Cameron",
+        "Kevin",
+        "Thomas",
+        "Jose",
+        "Hunter",
+        "Kyle",
+        "Caleb",
+        "Jason",
+        "Logan",
+        "Aaron",
+        "Eric",
+        "Brian",
+        "Gabriel",
+        "Adam",
+        "Jack",
+        "Isaiah",
+        "Juan",
+        "Luis",
+        "Connor",
+        "Charles",
+        "Elijah",
+        "Isaac",
+        "Steven",
+        "Evan",
+        "Jared",
+        "Sean",
+        "Timothy",
+        "Luke",
+        "Cody",
+        "Nathaniel",
+        "Seth",
+        "Mason",
+        "Richard",
+        "Carlos",
+        "Patrick",
+        "Devin",
+        "Bryan",
+        "Cole",
+        "Jackson",
+        "Ian",
+        "Garrett",
+        "Trevor",
+        "Jesus",
+        "Chase",
+        "Adrian",
+        "Mark",
+        "Blake",
+        "Sebastian",
+        "Antonio",
+        "Lucas",
+      ];
+
+      //gender neutral names
+      var neutralNames = [
+        "Erin",
+        "Leslie",
+        "Mckenzie",
+        "Skylar",
+        "Kennedy",
+        "Peyton",
+        "Jordan",
+        "Dylan",
+        "Alex",
+        "Angel",
+        "Riley",
+        "Hayden",
+        "Devon",
+        "Drew",
+        "Andre",
+        "Landon",
+        "Arbor",
+        "Ash",
+        "Ellis",
+        "Everest",
+        "Jett",
+        "Oakley",
+        "Phoenix",
+        "Remy",
+        "Sage",
+        "Scout",
+        "Tatum",
+        "Wren",
+        "Robin",
+        "Lennon",
+        "Brooklyn",
+        "Dakota",
+        "Frankie",
+        "Charlie",
+        "Finley",
+        "Justice",
+        "Spencer",
+        "Landry",
+        "Carey",
+        "Kris",
+        "Noel",
+        "Ollie",
+        "Alva",
+        "Jessie",
+        "Johnnie",
+        "Sammie",
+        "Rene",
+        "Casey",
+        "Jackie",
+        "Jaylin",
+        "Gerry",
+        "Santana",
+        "Bailey",
+        "Cedar",
+        "Dallas",
+        "Darcy",
+        "Gray",
+        "Harley",
+        "Haven",
+        "Holland",
+        "Indigo",
+        "Courtney",
+        "Kendall",
+        "Lennox",
+        "Lane",
+        "London",
+        "Marley",
+        "Lyric",
+        "Navy",
+        "Presley",
+        "Raleigh",
+        "Reagan",
+        "Reef",
+        "Reese",
+        "Rory",
+        "Salem",
+        "Sawyer",
+        "Shea",
+        "Shiloh",
+        "Sutton",
+        "Taylor",
+        "Zion",
+        "True",
+      ];
+
+      //when page loads run this..
+      displaySelectedNames();
+
+      /*displaySelectedNames()
+            this function will check which radio button is selected, and output the corresponding array to the name list div*/
+      function displaySelectedNames() {
+        //which radio button is checked?
+        var selectedCategory = document.querySelector(
+          "input[name='category']:checked"
+        ).value;
+
+        console.log("Category Selected: " + selectedCategory);
+
+        //Display array to the output div
+        if (selectedCategory == "Male") {
+          //output using the built-in array method join();
+          document.getElementById("divNamesList").innerHTML =
+            maleNames.join("<br>");
+        } else if (selectedCategory == "Female") {
+          //this output using a loop... it does the same thing as above, but here, we manually iterate through the array
+          //clear the div of any content
+          document.getElementById("divNamesList").innerHTML = "";
+
+          for (var index = 0; index < femaleNames.length; index++) {
+            document.getElementById("divNamesList").innerHTML +=
+              femaleNames[index] + "<br>";
+          } //end loop
+        } else if (selectedCategory == "Neutral") {
+          document.getElementById("divNamesList").innerHTML =
+            neutralNames.join("<br>");
+        } else {
+          console.log("Something went wrong with the selected category");
+        } //end if
+      }
+
+      /*generateName()
+            read the surname textbox and randomly select from the list of the selected category names and create a name
+            it does this x number of times based on the dropdown menu selection 
+            then add these names to an array and display that array*/
+
+      function generateName() {
+        //Gather data
+        var selectedCategory = document.querySelector(
+          "input[name='category']:checked"
+        ).value;
+        console.log("Category: " + selectedCategory);
+
+        var surname = document.getElementById("tbSurname").value;
+        console.log("Surname: " + surname);
+
+        //Drop down menu - read the value property to access the selected value
+        var numNamesToGenerate = document.getElementById(
+          "ddNumNamesToGenerate"
+        ).value;
+        numNamesToGenerate = parseInt(numNamesToGenerate); //convert to number and reassign
+
+        console.log(numNamesToGenerate + " names will be generated");
+
+        //clear the aGeneratedNames array
+        aGeneratedNames = [];
+
+        //generate x number of names...
+        for (var counter = 0; counter < numNamesToGenerate; counter++) {
+          //create a variable to hold the generated name
+          var createdName = "";
+
+          if (selectedCategory == "Male") {
+            //use Math.random in combination with the length of the array, to create a number between 0 - array length - 1
+            var randomMaleIndex = Math.floor(Math.random() * maleNames.length);
+            console.log(randomMaleIndex);
+            createdName = maleNames[randomMaleIndex];
+          } else if (selectedCategory == "Female") {
+            createdName =
+              femaleNames[Math.floor(Math.random() * femaleNames.length)];
+          } else if (selectedCategory == "Neutral") {
+            createdName =
+              neutralNames[Math.floor(Math.random() * neutralNames.length)];
+          }
+
+          //add the created name to the aGeneratedNames array
+          aGeneratedNames.push(createdName + " " + surname);
+        } //end for
+
+        //Call the function that displays the generated names
+        displayGeneratedNames();
+      }
+
+      /*displayGeneratedNames()
+            will display the contents of the aGeneratedNames array*/
+      function displayGeneratedNames() {
+        document.getElementById("divGeneratedList").innerHTML =
+          aGeneratedNames.join("<br>");
+      }
+    </script>
+  </body>
+</html>
