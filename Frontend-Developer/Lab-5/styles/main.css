@@ -1,0 +1,179 @@
+/*
+  Please note that the current styling is desktop first approach, 
+  not the required mobile first approach.
+*/
+
+
+/* global settings */
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  font-size: 62.5%;
+  line-height: 1.6;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  background: url(../images/squares_bg.png);
+  color: #686868;
+}
+
+h2 {
+  color: teal;
+  margin: 0;
+  padding: 2.4rem 0;
+  text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.25);
+  font-family: "Dancing Script", cursive;
+  font-size: 6.4rem;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+p,
+strong {
+  font-size: 1.8rem;
+}
+
+/* Header */
+.header {
+  padding: 3.6rem 0;
+}
+
+.header-logo {
+  position: absolute;
+  left: 30px;
+  top: 70px;
+  opacity: 0.25;
+  z-index: -1;
+}
+
+.header-title {
+  color: teal;
+  text-align: center;
+  font-size: 7.2rem;
+  font-family: "Dancing Script", cursive;
+  font-weight: 600;
+}
+
+.header-nav {
+  padding: 2.4rem;
+  background-color: #fff;
+  margin-top: 24px;
+
+  border-top: 5px solid teal;
+  border-bottom: 5px solid teal;
+}
+
+.header-nav-list {
+  text-align: center;
+}
+
+.header-nav-list-item {
+  list-style: none;
+  text-align: center;
+  padding: 0 1.8rem;
+  display: inline;
+}
+
+.header-nav-list-item a {
+  font-size: 2.4rem;
+  font-weight: 500;
+  color: #686868;
+  text-decoration: none;
+}
+
+.header-nav-list-item:hover {
+  color: teal;
+  text-decoration: underline;
+}
+
+/* Main */
+.recipes {
+  margin: 50px 0;
+}
+
+.recipe-card {
+  background-color: #fff;
+  border: 1px solid #969696;
+  margin: 0 2%;
+  width: 29.3%;
+  float: left;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.recipe-card:hover {
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.25);
+  margin-top: -10px;
+}
+
+.author,
+.publish-date {
+  font-size: 17px;
+  text-align: right;
+}
+
+.publish-date {
+  opacity: 0.75;
+}
+
+.food-image {
+  width: 100%;
+  border-radius: 50%;
+}
+
+/* About */
+.about {
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 50px 30px;
+}
+
+.about-title {
+  color: #fff;
+  text-shadow: 5px 5px 0 rgba(0, 0, 0, 0.75);
+}
+
+.about-text {
+  color: #fff;
+  opacity: 0.75;
+  text-shadow: 1px 1px 0 black;
+  padding: 0;
+  margin: 0 0 3rem 0;
+}
+
+.about-logo {
+  float: left;
+  margin-right: 4.8rem;
+  margin-top: 1.8rem;
+}
+
+/* Footer */
+.footer {
+  font-weight: 100;
+  background-color: teal;
+  font-size: 1.8rem;
+  color: rgba(255, 255, 255, 0.75);
+  border-top: solid 2px #fff;
+  padding: 24px;
+}
+
+/* utility */
+
+.clear {
+  clear: both;
+}
+
+.left {
+  float: left;
+}
+
+.right {
+  float: right;
+}
+
+.footer-copyright {
+  color: #fff;
+  font-weight: 500;
+}
+

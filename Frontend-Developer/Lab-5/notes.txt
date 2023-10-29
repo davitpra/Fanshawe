@@ -1,0 +1,22 @@
+  This project has all the css code in one giant file and there are 
+  pros and cons of doing this.
+
+  pros: 
+    slightly faster webpage load times and less network traffic.
+  cons: 
+    you have one big giant css file which can be hard to maintain if the
+    project is just a little bit larger than this.
+  
+  In the industry, we separate the css codes into multiple files. 
+  The css code can easily be thousands of lines in a small real-world projects
+  and we have no choice but to separate the codes. 
+  By doing this we get the benefit of maintainability.
+
+  When the code is actually sent to the clients/users there are tools
+  to combine the css(and JavaScript) code into less css file. 
+  By doing this we get the benefit of less network traffic and slightly 
+  faster load times.
+
+  Do not worry about it for now if this does not make sense.
+  Try different approaches and see how you like it.
+  You will learn/experience more about this throughout the journey of IWD.
