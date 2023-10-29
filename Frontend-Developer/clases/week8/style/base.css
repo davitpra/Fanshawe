@@ -1,0 +1,27 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Lato", sans-serif;
+  font-size: 62.5%;
+  line-height: 1.6;
+}
+h1,
+h2,
+h3 {
+  line-height: 1.2;
+  color: #5247a6;
+}
+p {
+  color: #292929;
+}
+img {
+  max-width: 100%;
+  overflow: none;
+}
+.clear {
+  clear: both;
+}

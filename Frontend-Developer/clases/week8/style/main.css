@@ -1,0 +1,135 @@
+.header {
+  box-shadow: 0 0 8px 2px rgba(57, 63, 73, 20%);
+}
+
+.header-title {
+  font-size: 3.2rem;
+  text-align: center;
+  padding: 2.4rem 0;
+}
+
+.header-nav {
+  text-align: center;
+  background-color: #d7d7d7;
+}
+
+.header-link {
+  margin-top: 0.1rem;
+  background-color: #fff;
+  /* border-bottom: 1px solid rgb(220, 220, 220); */
+  padding: 0.4rem 0;
+  list-style: none;
+}
+
+/* LV HA */
+.link:link,
+.link:visited {
+  color: #292929;
+  font-size: 1.6rem;
+  text-decoration: none;
+}
+
+.link:hover,
+.link:active {
+  color: #5247a6;
+  text-decoration: underline;
+}
+
+.main {
+  padding: 1.6rem;
+  max-width: 1800px;
+  margin: 4.8rem 0;
+}
+.introduction-title {
+  font-size: 1.6rem;
+  line-height: 1.6;
+}
+
+.introduction-subtitle {
+  margin-top: 2.4rem;
+  font-size: 1.2rem;
+  color: rgb(56, 56, 56);
+  line-height: 2;
+  font-weight: 500;
+}
+
+.cards-wrapper {
+  margin-top: 6.4rem;
+}
+
+.card {
+  width: 90%;
+  margin: 0 auto;
+  box-shadow: 0 0 8px 2px rgba(57, 63, 73, 25%);
+  margin-top: 3.2rem;
+  /* padding: 0.8rem; */
+}
+
+.card-text-wrapper {
+  padding: 1.6rem 1.2rem;
+}
+
+.card-title {
+  font-size: 1.6rem;
+}
+
+.card-desc {
+  margin-top: 1.6rem;
+  font-size: 1.2rem;
+}
+
+/* lv ha */
+.card-link:link,
+.card-link:visited {
+  display: inline-block;
+  margin-top: 1.6rem;
+  background-color: #3f5fee;
+  color: #fff;
+  font-size: 1.2rem;
+  padding: 0.5rem 1rem;
+  border-radius: 2px;
+}
+
+.card-link:hover,
+.card-link:active {
+  background-color: #fff;
+  color: #3f5fee;
+  border: 2px #3f5fee solid;
+}
+
+.subscription {
+  margin-top: 6.4rem;
+  text-align: center;
+}
+.subscribe-title {
+  font-size: 1.6rem;
+}
+
+.subscribe-firstname,
+.subscribe-lastname,
+.subscribe-email,
+.subscribe-btn {
+  text-align: center;
+  width: 100%;
+  margin-top: 1.2rem;
+  border-radius: 5px;
+  height: 2.4rem;
+}
+
+.subscribe-btn {
+  border: 2px solid #3f5fee;
+  background-color: #fff;
+}
+
+.footer {
+  margin-top: 2.4rem;
+  background-color: #323f77;
+  text-align: center;
+  padding: 2rem;
+}
+
+.footer-copyright,
+.footer-author {
+  color: #fff;
+  font-size: 1.2rem;
+}
