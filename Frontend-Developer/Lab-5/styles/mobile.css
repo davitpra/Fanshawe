@@ -25,7 +25,7 @@ h2 {
   padding: 2.4rem 0;
   text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.25);
   font-family: "Dancing Script", cursive;
-  font-size: 6.4rem;
+  font-size: 4rem;
   font-weight: 600;
   line-height: 1.2;
 }
@@ -38,20 +38,18 @@ strong {
 /* Header */
 .header {
   padding: 3.6rem 0;
+  text-align: center;
 }
 
 .header-logo {
-  position: absolute;
-  left: 30px;
-  top: 70px;
   opacity: 0.25;
-  z-index: -1;
+  /* max-width: 100%; */
 }
 
 .header-title {
   color: teal;
   text-align: center;
-  font-size: 7.2rem;
+  font-size: 4.2rem;
   font-family: "Dancing Script", cursive;
   font-weight: 600;
 }
@@ -60,6 +58,7 @@ strong {
   padding: 2.4rem;
   background-color: #fff;
   margin-top: 24px;
+  width: 100vw;
 
   border-top: 5px solid teal;
   border-bottom: 5px solid teal;
@@ -73,7 +72,6 @@ strong {
   list-style: none;
   text-align: center;
   padding: 0 1.8rem;
-  display: inline;
 }
 
 .header-nav-list-item a {
@@ -96,9 +94,7 @@ strong {
 .recipe-card {
   background-color: #fff;
   border: 1px solid #969696;
-  margin: 0 2%;
-  width: 29.3%;
-  float: left;
+  margin: 0 2% 4%;
   padding: 20px;
   border-radius: 10px;
 }
@@ -121,6 +117,7 @@ strong {
 .food-image {
   width: 100%;
   border-radius: 50%;
+  margin: 4% 0;
 }
 
 /* About */
@@ -143,9 +140,7 @@ strong {
 }
 
 .about-logo {
-  float: left;
-  margin-right: 4.8rem;
-  margin-top: 1.8rem;
+  display: none
 }
 
 /* Footer */
@@ -156,20 +151,7 @@ strong {
   color: rgba(255, 255, 255, 0.75);
   border-top: solid 2px #fff;
   padding: 24px;
-}
-
-/* utility */
-
-.clear {
-  clear: both;
-}
-
-.left {
-  float: left;
-}
-
-.right {
-  float: right;
+  text-align: center;
 }
 
 .footer-copyright {

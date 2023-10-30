@@ -1,0 +1,41 @@
+@media only screen and (min-width: 768px) {
+    /* global settings */
+    h2 {
+        font-size: 6.4rem;
+      }
+
+    /* Header */
+    .header-logo {
+        position: absolute; 
+        left: 30px;
+        top: 50px;
+        z-index: -1;
+    }
+
+    .header-title {
+        font-size: 7.2rem;
+    }
+
+    .header-nav-list-item {
+        display: inline;
+    }
+
+    /* Main */
+    .recipe-detail{
+        display:flex;
+        align-items: center;
+    }
+
+    .food-image{
+        margin: 0 4%
+    }
+
+
+    /* About */
+    .about-logo {
+        display: block;
+        float: left;
+        margin-right: 4.8rem;
+        margin-top: 1.8rem;
+    }
+}
