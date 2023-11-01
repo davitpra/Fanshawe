@@ -73,7 +73,13 @@
     <p>
       Add Product:
       <input type="text" id="addedProduct" />
-      <input type="button" value="Add Product" onclick="addProduct();" />
+      <input
+        type="button"
+        value="Add Product"
+        id="btnAddProduct"
+        onclick="addProduct();"
+        disabled
+      />
     </p>
 
     <hr />
@@ -133,6 +139,7 @@
       // products available
       const productOutput = document.getElementById("productOutput");
       const addedProduct = document.getElementById("addedProduct");
+      const btnAddProduct = document.getElementById("btnAddProduct");
 
       //Shopping cart
       const btnAddCart = document.getElementById("btnAddCart");
@@ -157,10 +164,10 @@
             tempElement.innerHTML = x;
             tempElement.value = x;
             itemNumDropdown.appendChild(tempElement);
-            //enable add to cart button
-            btnAddCart.disabled = false;
           }
 
+          //enable add to cart button
+          btnAddCart.disabled = false;
           console.log("Dropdown updated!");
         } // end if
         else {
@@ -178,14 +185,14 @@
         // Empty productOutput
         productOutput.innerHTML = "";
 
+        btnAddProduct.disabled = false;
+
         // Check which department is selected
         if (rbProduce.checked) {
           // populate productOutput with Produce items
           productOutput.innerHTML = Produce.join(", ");
-
           // populate dropdown with Produce items
           changeItemDropdown(Produce.length);
-
           // repeat the same process for the other departments
         } else if (rbBakery.checked) {
           productOutput.innerHTML = Bakery.join(", ");
@@ -250,6 +257,7 @@
         addedProduct.value = "";
       } // end addProduct function
 
+      addedProduct.onkeydown = function () {};
       /*
       	addItemToCart()
       	Purpose: add the selected item to the shopping cart
@@ -301,6 +309,11 @@
         }
         // update the shopping cart output
         cartOutput.innerHTML = shoppingCart.join(", ");
+
+        // if the shopping cart is empty, display a message
+        if (shoppingCart.length == 0) {
+          cartOutput.innerHTML = "[Add an Item to Cart]";
+        }
       }
     </script>
   </body>
