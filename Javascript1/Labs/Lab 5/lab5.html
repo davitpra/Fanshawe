@@ -309,11 +309,12 @@
         }
         // update the shopping cart output
         cartOutput.innerHTML = shoppingCart.join(", ");
-
         // if the shopping cart is empty, display a message
         if (shoppingCart.length == 0) {
           cartOutput.innerHTML = "[Add an Item to Cart]";
         }
+        // clear the input
+        tb_remove.value = "";
       }
     </script>
   </body>
