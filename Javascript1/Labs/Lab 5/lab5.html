@@ -184,14 +184,14 @@
       function displayProducts() {
         // Empty productOutput
         productOutput.innerHTML = "";
-
+        // enable add product button
         btnAddProduct.disabled = false;
 
         // Check which department is selected
         if (rbProduce.checked) {
           // populate productOutput with Produce items
           productOutput.innerHTML = Produce.join(", ");
-          // populate dropdown with Produce items
+          // populate dropdown with Produce items length
           changeItemDropdown(Produce.length);
           // repeat the same process for the other departments
         } else if (rbBakery.checked) {
@@ -257,7 +257,6 @@
         addedProduct.value = "";
       } // end addProduct function
 
-      addedProduct.onkeydown = function () {};
       /*
       	addItemToCart()
       	Purpose: add the selected item to the shopping cart

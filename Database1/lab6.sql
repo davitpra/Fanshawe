@@ -3,7 +3,7 @@ USE House_Painting_Business;
 
 DROP TABLE IF EXISTS Custumers;
 CREATE TABLE Custumers(
-	custumer_id INT NOT NULL AUTO_INCREMENT ,
+	custumer_id INT NOT NULL UNIQUE AUTO_INCREMENT ,
     fist_Name VARCHAR(20) NOT NULL,
     last_Name VARCHAR(20) NOT NULL,
     address_street VARCHAR(255) NOT NULL,
@@ -25,7 +25,7 @@ VALUES
 
 DROP TABLE IF EXISTS Employees;
 CREATE TABLE Employees (
-	employee_id int NOT NULL AUTO_INCREMENT ,
+	employee_id int NOT NULL UNIQUE AUTO_INCREMENT ,
     fist_Name VARCHAR(20) NOT NULL,
     last_Name VARCHAR(20) NOT NULL,
     address_street VARCHAR(255) NOT NULL,
@@ -47,7 +47,7 @@ VALUES
 
 DROP TABLE IF EXISTS Contracts;
 CREATE TABLE Contracts (
-	contract_id INT NOT NULL AUTO_INCREMENT,
+	contract_id INT NOT NULL UNIQUE AUTO_INCREMENT,
     project_address VARCHAR(255) NOT NULL,
 	project_city VARCHAR(255) NOT NULL,
 	project_province VARCHAR(255) NOT NULL,
@@ -75,7 +75,7 @@ VALUES
 	(3, '789 Maple Ln', 'Yourtown', 'Yourstate', '2023-10-20 10:00:00', '2023-10-28 19:00:00', 6000.00, 3, 3);
 
 CREATE TABLE Colors (
-	color_id INT NOT NULL AUTO_INCREMENT,
+	color_id INT NOT NULL UNIQUE AUTO_INCREMENT,
 	color VARCHAR(20),
 	inventary INT DEFAULT 0,
 	PRIMARY KEY (color_id)
@@ -88,7 +88,7 @@ INSERT INTO Colors (color_id, color, inventary) VALUES
 (3, 'Green', 10);
 
 CREATE TABLE Rooms (
-	room_id INT NOT NULL AUTO_INCREMENT,
+	room_id INT NOT NULL UNIQUE AUTO_INCREMENT,
 	paint_usage_amount INT DEFAULT 1,
 	contract_id INT NOT NULL,
 	color_id INT,
