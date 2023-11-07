@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Objects Constructors</title>
+</head>
+<body>
+    <h1>Object Constructors</h1>
+
+    <script>
+        //Constructors - allow us to produce many objects with the same structure
+        //user constructor:
+        function User(name, age, job) {
+            this.name = name;
+            this.age = age;
+            this.job = job;
+        }
+        
+        var user1 = new User("Sam", 35, "teacher");
+        var user2 = new User("Carla", 49, "actress");
+        var user3 = new User("Jean", 20, "nurse");
+        
+        console.log(user1, user2, user3);
+
+    //============================================================
+    //constructor for a smartphone object
+    //properties: name, manufacturer, internalStorage, hasExpansionSlot, is5G, color
+
+    function SmartPhone(n, manufacturer, internalStorage, expansionSlot, is5G, color) {
+        this.name = n;
+        this.manufacturer = manufacturer;
+        this.internalStorage = internalStorage;
+        this.expansionSlot = expansionSlot;
+        this.is5G = is5G;
+        this.color = color;
+    };
+
+    var myPhone = new SmartPhone("S9", "Samsung", 128, true, true, "gray");
+
+    console.log(typeof myPhone);
+    console.log(myPhone);
+    console.log(myPhone.manufacturer);
+
+    var anotherPhone = new SmartPhone("Iphone 15", "Apple", 32, false, true, "gold");
+
+    function displayPhone(phone) {
+        document.write("<strong>" + phone.manufacturer + "<br>"
+            + phone.name + "<br>"
+            + phone.internalStorage + "<br>"
+            + phone.color + "<br>" + "</strong>");
+    }
+
+    displayPhone(anotherPhone);
+
+    //======================================================
+    //"this" refers to the current object being created
+    //to ensure that each object has its own private data
+    function PlanType(name, price, space, transfer, pages){
+        this.name = name;
+        this.price = price;
+        this.space = space;
+        this.transfer = transfer;
+        this.pages = pages;
+    }
+
+    //create an empty array
+    var plans = [];
+
+    //create object instances of constructor
+    var plan1 = new PlanType("Basic", 3.99, 100, 1000, 10);
+    var plan2 = new PlanType("Premium", 5.99, 500, 5000, 50);
+    var plan3 = new PlanType("Ultimate", 9.99, 2000, 20000, 500);
+
+    console.log(typeof plan1);
+
+    //push the new objects to the plans array
+    plans.push(plan1, plan2, plan3);
+    console.log(plans);
+
+    //print out a single object using document.write
+    function printObj(obj) {
+        document.write(obj.name + " " + obj.price + " " + obj.space + " " + obj.transfer + " " + obj.pages + " " + "<br>");
+    }
+
+    printObj(plan1);
+    printObj(plan2);
+    printObj(plan3);
+
+    //print out the array of objects 
+    function printObjArray(pArray){
+        var properties = "";
+        for(var i = 0; i < pArray.length; i++) {
+            properties += pArray[i].name + " ";
+            properties += pArray[i].price + " ";
+            properties += pArray[i].space + " ";
+            properties += pArray[i].transfer + " ";
+            properties += pArray[i].pages + " ";
+        }
+        
+        document.write(properties);
+    }
+
+    printObjArray(plans);
+
+
+
+
+
+
+
+    </script>
+</body>
+</html>

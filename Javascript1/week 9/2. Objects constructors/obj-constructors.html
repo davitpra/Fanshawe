@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Object Constructors</title>
+</head>
+<body>
+    <div>
+        <h2>Enter Info Below:</h2>
+        User Name: <input type="text" id="userName"><br><br>
+        Age: <input type="number" id="userAge"><br><br>
+        Email: <input type="text" id="userEmail"><br><br>
+        <input type="button" value="submit" onclick="submitInfo()">
+    </div>
+
+    <div id="outputDiv"></div>
+    <script>
+        //User constructor
+        function User(name, age, email) {
+            this.name = name;
+            this.age = age;
+            this.email = email;
+        }
+
+        var userArray = [];
+
+        //function to submit info
+        //create new objects based on the user input
+        //store them in the userArray
+        function submitInfo(){
+            var userName = document.getElementById("userName").value;
+            var userAge = document.getElementById("userAge").value;
+            var userEmail = document.getElementById("userEmail").value;
+
+            //create a new user object
+            var newUser = new User(userName, userAge, userEmail);
+
+            //add the new object to the array
+            userArray.push(newUser);
+            //call the displayUser function and pass it the newly created object
+            displayUser(newUser);
+            console.log(userArray);
+        }
+
+        function displayUser(user){
+            //display the user info output
+            var output = "User Name: " + user.name + "<br>" + "User Age: " + user.age + "<br>" + "User Email: " + user.email + "<br>";
+
+            document.getElementById("outputDiv").innerHTML = output;
+        }
+
+    </script>
+</body>
+</html>

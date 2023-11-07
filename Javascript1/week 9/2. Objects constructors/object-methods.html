@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>object methods</title>
+</head>
+<body>
+    <script>
+        var user = {
+            firstName: "Jane",
+            lastName:"Doe",
+            birthYear: 1985,
+            calculateAge: function(birthYear){
+                return 2023 - birthYear;
+            }
+        };
+
+        console.log(user.calculateAge(1985));
+
+        //use the "this" keyword to ref the object property value
+        var user = {
+            firstName: "Jane",
+            lastName:"Doe",
+            birthYear: 1985,
+            calculateAge: function(){
+                return 2023 - this.birthYear;
+            }
+        };
+
+        console.log(user.calculateAge());
+
+        //store the result of the calculateAge function as a new property:value pair
+        var user = {
+            firstName: "Jane",
+            lastName:"Doe",
+            birthYear: 1985,
+            calculateAge: function(birthYear){
+                return 2023 - birthYear;
+            }
+        };
+
+        var age = user.calculateAge(); //taking result of function and storing in new variable
+
+        user.age = user.calculateAge(); // assigning the result to the object
+
+
+    </script>
+</body>
+</html>

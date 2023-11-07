@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Objects</title>
+</head>
+<body>
+        <h1>Object Examples</h1>
+        <script>
+            //make a few student objects
+            var student1 = {
+                firstName: "Same",
+                age: 19,
+                grades: [89, 79, 80, 100],
+                isGraduating: false,
+                isPassing: null
+            }
+
+            var student2 = {
+                firstName: "Alex",
+                age: 22,
+                grades: [50, 51, 65, 60, 52],
+                isGraduating: true,
+                isPassing: null
+            }
+
+            //pass a grade to each student's array
+            student1.grades.push(100);
+            student2.grades.push(100);
+
+            console.log(student1.grades); 
+
+            /* Calculate Average Function
+            This function will calculate the average of the grades for the students
+            It will also set the isPassing property to true or false based on if their average is > 60*/
+            function calcAvg(student){
+                var sum = 0;
+                var avg = 0;
+                //Iterate through student grades array to evaluate the sum of all grades
+                for (var i = 0; i < student.grades.length; i++) {
+                    sum = sum + student.grades[i];
+                }
+                avg = sum/student.grades.length; //average value
+                console.log("Student " + student.firstName + " average is: " + avg);
+
+                if (avg > 60) {
+                    //change the isPassing property
+                    student.isPassing = true;
+                }
+                else {
+                    student.isPassing = false;
+                }
+            }
+
+            //call the function with the objects
+            calcAvg(student1);
+            calcAvg(student2);
+
+
+            //Make car objects
+            var car1 = {
+                make: "Accent",
+                manufacturer: "Hyundai",
+                color: "red",
+                odometer: 199000,
+                passengers: 4
+            };
+
+            var car2 = {
+                make: "Civic",
+                manufacturer: "Honda",
+                color: "black",
+                odometer: 50000,
+                passengers: 4
+            };
+
+            console.log(typeof car1); //object
+            console.log(typeof car1.odometer); //number
+            console.log(car1.service); //undefined
+
+            //add a new property
+            car1.serviceYears = [2002, 2010, 2021, 2023];
+            car2.serviceYears = [2020, 2021];
+
+            /*Function to test if car needs servicing
+            if km are > 50000 and car hasn't been serviced in 2023, we need servicing*/
+            function needsService(car) {
+                if(car.odometer > 50000) {
+                    if (car.serviceYears.indexOf(2023) === -1) {
+                        //not in the array
+                        console.log("You have to service your " + car.make);
+                    }
+                    else {
+                        console.log("You have already serviced your " + car.make);
+                    }
+                }
+                else {
+                    //you can continue to drive
+                    console.log("You can drive your " + car.make + " more before servicing.");
+                }
+            }
+
+            //call the function with the car objects
+            needsService(car1);
+            needsService(car2);
+        </script>
+</body>
+</html>

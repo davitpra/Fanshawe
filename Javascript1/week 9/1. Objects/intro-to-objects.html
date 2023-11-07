@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intro to Objects</title>
+</head>
+<body>
+    <h1>Introduction to Objects</h1>
+
+    <script>
+        //old approach to data storage for having many properties
+        var user1Name = "John Smith";
+        var user1Age = 45;
+        var user1Gender = "Male";
+
+        var user2Name = "Jane Doe";
+        var user2Age = 24;
+        var user2Gender = "Female";
+
+        //Using object notation to store data as an object rather than separate values
+        var user1 = {
+            name: "John Smith",
+            age: 45,
+            gender: "Male"
+        };
+
+        var user2 = {
+            name: "Jane Doe",
+            age: 24,
+            gender: "Female",
+            hasCriminalRecord: true //only this object has this property
+        };
+
+        //Access object data using the object instance
+        console.log(typeof user1);
+        console.log(user1);
+
+        console.log(user1.name);
+        console.log(user1.age);
+        console.log(user1.hasCriminalRecord);//property does not exist in the object - undefined
+
+        function outputUserObjectToConsole(obj) {
+            console.log(obj.name);
+            console.log(obj.age);
+            console.log(obj.gender);
+            console.log(obj.hasCriminalRecord);
+        }
+
+        //we pass the instanced object to the function to access the properties and outputs the values
+        //it references the parameter obj and accesses the properties for the specific object instance that is passed to it.
+        console.log("-------");
+        outputUserObjectToConsole(user1);
+        console.log("-------");
+        outputUserObjectToConsole(user2);
+
+        //
+        // function outputUserToConsole(name, age, gender) {
+        //     console.log(name);
+        //     console.log(age);
+        //     console.log(gender);
+        // }
+
+        // outputUserToConsole(user1Name, user1Age)
+
+
+
+        outputUserObjectToConsole(us)
+
+
+    </script>
+</body>
+</html>
