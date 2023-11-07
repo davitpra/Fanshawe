@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      body {
+        font-family: Arial;
+        color: #010211;
+        font-size: 125%;
+      }
+      .advisor {
+        width: 58%;
+        height: 300px;
+        background: #f8f8ff;
+        float: left;
+        padding: 1%;
+      }
+
+      .appointment {
+        width: 38%;
+        height: 300px;
+        background: #dcdcdc;
+        float: right;
+        padding: 1%;
+      }
+
+      input[type="button"] {
+        background-color: rgb(85, 85, 219);
+        border: none;
+        color: white;
+        padding: 12px 32px;
+        text-align: center;
+        display: inline-block;
+        font-size: 12px;
+        margin: 3px 2px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Appointment Booking</h1>
+    <hr />
+
+    <div class="advisor">
+      <!-- Counsellor information -->
+      <div style="float: left; width: 48%">
+        <h2>Academic Advisors</h2>
+        <div id="advisorInfo">Advisor info here</div>
+        <br />
+
+        <input type="button" value="Next" onclick="nextAdvisor();" />
+      </div>
+
+      <!-- Appointments available -->
+      <div style="float: right; width: 48%">
+        <h2>Availability:</h2>
+        <div id="advisorTimes">Appointments here</div>
+        <br />
+      </div>
+    </div>
+    <div class="appointment">
+      <h2>Booked Appointments:</h2>
+      <div id="appOutput">Appointment info here</div>
+      <br />
+      <input type="button" value="Next" onclick="nextAppoint();" />
+    </div>
+
+    <!-- Booking form -->
+    <div>
+      <h2>Book an Appointment</h2>
+      Student Name: <input id="aptName" type="text" /><br /><br />
+      Appointment Time 24 hours (Enter time between 9 and 17):
+      <input id="aptTime" type="number" /><br /><br />
+      Type: <input id="aptService" type="text" /><br /><br />
+      <input type="button" value="Book" onclick="makeAppointment();" />
+    </div>
+
+    <!-- Javascript here -->
+    <script>
+      // 2. Create a class called Advisor and Appointment with the following properties:
+      //create advisor class
+      function Advisor({
+        firstName,
+        lastName,
+        appointment = [9, 10, 11, 12, 14, 15, 16, 17],
+        service = ["Academic", "Career", "Financial"],
+      }) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.appointment = appointment;
+        this.service = service;
+      }
+
+      //create appointment class
+      function Appointment({
+        advisorName,
+        studentName,
+        appointmentTime,
+        serviceSelected,
+      }) {
+        this.advisorName = advisorName;
+        this.studentName = studentName;
+        this.appointmentTime = appointmentTime;
+        this.serviceSelected = serviceSelected;
+      }
+
+      //3. create empty array to store advisor objects and other for appointment objects
+      const advisorArray = [];
+      const appointmentArray = [];
+
+      //4. create two counter variables in global scope initialized to 0
+      let advisorCounter = 0;
+      let appointmentCounter = 0;
+
+      //5. Make 3 advisor objects
+      const advisor1 = new Advisor({
+        firstName: "Jane",
+        lastName: "Doe",
+        appointment: [9, 10],
+        service: ["Academic", "Career"],
+      });
+
+      const advisor2 = new Advisor({
+        firstName: "John",
+        lastName: "Smith",
+        appointment: [11, 12],
+        service: ["Academic", "Financial"],
+      });
+
+      const advisor3 = new Advisor({
+        firstName: "Mary",
+        lastName: "Jones",
+        appointment: [14, 15],
+        service: ["Career", "Financial"],
+      });
+
+      //6. add these advisor objects to the advisorArray
+      advisorArray.push(advisor1, advisor2, advisor3);
+
+      // 7. Creating functions to display the advisor info, availability and appointment
+      //======================================================
+      // HTML NODES
+      //display nodes
+      let advisorInfo = document.getElementById("advisorInfo");
+      let advisorTimes = document.getElementById("advisorTimes");
+      let appOutput = document.getElementById("appOutput");
+
+      //input nodes
+      let aptName = document.getElementById("aptName");
+      let aptTime = document.getElementById("aptTime");
+      let aptService = document.getElementById("aptService");
+      //======================================================
+
+      /*
+      	displayAdvisorInfo()
+      	Purpose: display the advisor info
+      	Parameters: advisor object
+      	Returns: Nothing
+      */
+      function displayAdvisorInfo(advisor) {
+        //display the advisor info
+        advisorInfo.innerHTML =
+          "First Name: " +
+          advisor.firstName +
+          "<br />" +
+          "Last Name: " +
+          advisor.lastName +
+          "<br />" +
+          "Services: " +
+          advisor.service;
+      }
+
+      /*
+      	displayAvailability()
+      	Purpose: display the advisor availability
+      	Parameters: advisor object
+      	Returns: Nothing
+      */
+      function displayAvailability(advisor) {
+        //clear the advisor times
+        advisorTimes.innerHTML = "";
+        //display the advisor times
+        advisor.appointment.map((time) => {
+          advisorTimes.innerHTML += time + ":00" + "<br />";
+        });
+      }
+
+      /*
+      	displayAppointment()
+      	Purpose: display the appointment info
+      	Parameters: appointment object
+      	Returns: Nothing
+      */
+      function displayAppointment(appointment) {
+        if (appointmentArray.length === 0) {
+          appOutput.innerHTML = "No appointments booked";
+          return;
+        } else {
+          //display appointment info
+          appOutput.innerHTML =
+            "Advisor Name: " +
+            appointment.advisorName +
+            "<br />" +
+            "Student Name: " +
+            appointment.studentName +
+            "<br />" +
+            "Appointment Time: " +
+            appointment.appointmentTime +
+            ":00" +
+            "<br />" +
+            "Service: " +
+            appointment.serviceSelected;
+        }
+      }
+
+      /*
+        makeAppointment()
+        Purpose: create a new appointment object and add it to the appointmentArray
+        Parameters: None
+        Returns: Nothing
+      */
+      function makeAppointment() {
+        //get the values from the input fields
+        let name = aptName.value;
+        let time = aptTime.value;
+        let service = aptService.value;
+
+        //get the current advisor
+        let selectedAdvisor = advisorArray[advisorCounter];
+
+        //check if the time and service are valid
+        if (
+          selectedAdvisor.appointment.includes(parseInt(time)) &&
+          selectedAdvisor.service.includes(service)
+        ) {
+          //create a new appointment object
+          let appointment = new Appointment({
+            advisorName:
+              advisorArray[advisorCounter].firstName +
+              " " +
+              advisorArray[advisorCounter].lastName,
+            studentName: name,
+            appointmentTime: time,
+            serviceSelected: service,
+          });
+
+          //remove the appointment time from the advisor object
+          let index = selectedAdvisor.appointment.indexOf(parseInt(time));
+          selectedAdvisor.appointment.splice(index, 1);
+
+          //display the advisor times
+          displayAvailability(selectedAdvisor);
+
+          //add the appointment object to the appointmentArray
+          appointmentArray.push(appointment);
+
+          //display the appointment
+          displayAppointment(appointment);
+
+          //alert the user
+          alert("Appointment booked: See you soon");
+
+          //clear the input fields
+          aptName.value = "";
+          aptTime.value = "";
+          aptService.value = "";
+        } else {
+          //alert the user
+          alert("Please enter a valid time and service");
+        }
+      }
+
+      /*
+        	nextAdvisor()
+        	Purpose: display the next advisor
+        	Parameters: None
+        	Returns: Nothing
+      */
+      function nextAdvisor() {
+        //increment the advisor counter
+        advisorCounter++;
+
+        //if the advisor counter is greater than the length of the advisorArray
+        if (advisorCounter >= advisorArray.length) {
+          //reset the advisor counter to 0
+          advisorCounter = 0;
+        }
+
+        //display the advisor info
+        displayAdvisorInfo(advisorArray[advisorCounter]);
+
+        //display the advisor times
+        displayAvailability(advisorArray[advisorCounter]);
+      }
+
+      /*
+        nextAppoint()
+        Purpose: display the next appointment
+        Parameters: None
+        Returns: Nothing
+      */
+      function nextAppoint() {
+        //increment the appointment counter
+        appointmentCounter++;
+
+        //if the appointment counter is greater than the length of the appointmentArray
+        if (appointmentCounter >= appointmentArray.length) {
+          //reset the appointment counter to 0
+          appointmentCounter = 0;
+        }
+        //display the appointment
+        displayAppointment(appointmentArray[appointmentCounter]);
+      }
+
+      //display the first advisor and appointment
+      displayAdvisorInfo(advisorArray[advisorCounter]);
+      displayAvailability(advisorArray[advisorCounter]);
+    </script>
+  </body>
+</html>
