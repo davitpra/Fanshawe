@@ -1,0 +1,209 @@
+<html>
+  <body>
+    <h1>Creating Elements using DOM</h1>
+    <div id="divForm">
+      Month:
+      <select onchange="populateDays()" id="ddMonths">
+        <option>January</option>
+        <option>February</option>
+        <option>March</option>
+        <option>April</option>
+        <option>May</option>
+        <option>June</option>
+        <option>July</option>
+        <option>August</option>
+        <option>September</option>
+        <option>October</option>
+        <option>November</option>
+        <option>December</option>
+      </select>
+
+      Day:
+      <select id="ddDay"></select>
+
+      Year:
+      <select onchange="populateDays()" id="ddYear"></select>
+      <br />
+      Menu Items:
+      <select id="menu" onchange="showMenu()"></select
+      ><br />
+    </div>
+    <hr />
+    <div id="itemsAvailable"></div>
+
+    <script>
+      //3 steps
+      // 1. Create a new element: document.createElement("tag name");
+      // 2. Modify the element: element.property = "some value";
+      // 3. Append the new element to a parent: parentElement.appendChild(element);
+
+      //input - textbox
+      //create:
+      var elTextbox = document.createElement("input");
+
+      //modify:
+      elTextbox.type = "text";
+      elTextbox.id = "myTextBox";
+
+      //Get the parent:
+      var theDIV = document.getElementById("divForm");
+
+      //append:
+      theDIV.appendChild(elTextbox);
+
+      var theBody = document.childNodes[0].childNodes[1];
+      theBody.style.backgroundColor = "lightgray";
+
+      //Activity 1
+      for (var year = 2023; year >= 1900; year--) {
+        //create
+        var tempOption = document.createElement("option");
+        //modify
+        tempOption.innerHTML = year;
+        tempOption.value = year;
+        //append to the parent
+        document.getElementById("ddYear").appendChild(tempOption);
+      }
+
+      //Activity 2
+      function populateDays() {
+        //Get data
+        //month selected
+        var monthSelected = document.getElementById("ddMonths").value;
+
+        //Year selected
+        var yearSelected = document.getElementById("ddYear").value;
+
+        //get days drop down
+        var days = document.getElementById("ddDay");
+
+        //reset drop down to empty string
+        days.innerHTML = "";
+
+        //create variable to store the # of days in the selected month
+        var daysInMonth = 0;
+
+        //check what month was selected
+        if (
+          monthSelected === "September" ||
+          monthSelected === "April" ||
+          monthSelected === "June" ||
+          monthSelected === "November"
+        ) {
+          daysInMonth = 30;
+        } else if (
+          monthSelected === "January" ||
+          monthSelected === "March" ||
+          monthSelected === "May" ||
+          monthSelected === "July" ||
+          monthSelected === "August" ||
+          monthSelected === "October" ||
+          monthSelected === "December"
+        ) {
+          daysInMonth = 31;
+        } else if (monthSelected === "February") {
+          if (yearSelected % 4 === 0) {
+            daysInMonth = 29;
+          } else {
+            daysInMonth = 28;
+          }
+        }
+        for (var i = 1; i <= daysInMonth; i++) {
+          //create
+          var tempOp = document.createElement("option");
+          //modify
+          tempOp.innerHTML = i;
+          tempOp.value = i;
+          //append
+          days.appendChild(tempOp);
+        }
+      }
+
+      //activity 3:
+
+      //Create an Object Constructor to represent a menu item
+      //MenuItem(name, price, category)
+      function MenuItem(name, price, category) {
+        this.name = name;
+        this.price = price;
+        this.category = category;
+      }
+      //create 5 objects and push them to a menu array
+      var menu = [];
+
+      //ex:
+      menu.push(new MenuItem("Coffee", 2.75, "Drink"));
+      menu.push(new MenuItem("Apple Pie", 4.75, "Dessert"));
+      menu.push(new MenuItem("Salad", 6.25, "Food"));
+      menu.push(new MenuItem("Juice", 1.75, "Drink"));
+      menu.push(new MenuItem("Ice cream", 2.75, "Dessert"));
+
+      //...continue with activity instructions
+      function populateMenu(menuArray) {
+        //I want to find unique categories for all menu items
+
+        var menuCat = []; //hold the categories
+
+        for (var i = 0; i < menuArray.length; i++) {
+          var foundCat = false; //assuming we don't find a category
+
+          for (var j = 0; j < menuCat.length; j++) {
+            if (menuArray[i].category === menuCat[j]) {
+              foundCat = true;
+            }
+          }
+          if (foundCat === false) {
+            menuCat.push(menuArray[i].category); //add to the array
+          }
+        }
+
+        for (var k = 0; k < menuCat.length; k++) {
+          //Create the element
+          var tempOp = document.createElement("option");
+          tempOp.innerHTML = menuCat[k];
+          tempOp.value = menuCat[k];
+
+          //append
+          document.getElementById("menu").appendChild(tempOp);
+        }
+      }
+      populateMenu(menu);
+
+      //Showmenu
+      function showMenu() {
+        //get the user selection
+        var menuCatSelected = document.getElementById("menu").value;
+
+        //array to store the selected items
+        var selectedElements = [];
+
+        var menuParent = document.getElementById("itemsAvailable");
+        menuParent.innerHTML = ""; //ensure that it's empty
+
+        //loop through menu array
+        //test if the selected item matches the menu category
+        //if so... push to selectedElements array
+        for (var i = 0; i < menu.length; i++) {
+          if (menu[i].category === menuCatSelected) {
+            selectedElements.push(menu[i]);
+          }
+        }
+
+        //display selectElements:
+        for (var j = 0; j < selectedElements.length; j++) {
+          //create
+          var tempDiv = document.createElement("div");
+          //modify
+          var info =
+            "Item Name: " +
+            selectedElements[j].name +
+            " | Item Price: $" +
+            selectedElements[j].price;
+          tempDiv.innerHTML = info;
+          //append
+          menuParent.appendChild(tempDiv);
+        }
+      }
+    </script>
+  </body>
+</html>
