@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <script>
+      //Staff Member constructor
+      function StaffMember(fname, lname, position, startd) {
+        this.firstName = fname; //String
+        this.lastName = lname; //String
+        this.position = position; //String
+        this.startDate = startd; //Date object
+
+        //Method to calculate how many years the staff member has been with the company
+        this.howManyYears = function () {
+          var today = new Date();
+          var years = today.getFullYear() - this.startDate.getFullYear();
+          return years;
+        };
+      }
+
+      //Car constructor
+      function Car(year, make, model, milage, price, sold, service) {
+        this.year = year; //Number
+        this.make = make; //String
+        this.model = model; //String
+        this.milage = milage; //Number
+        this.price = price; //Price
+        this.isSold = sold; //Boolean
+        this.serviceYears = [service]; //Array of numbers
+
+        //Method to check if the car has been serviced in a specific year
+        this.hasServiceYear = function (year) {
+          if (this.serviceYears.includes(year)) {
+            return true;
+          } else {
+            return false;
+          }
+        };
+
+        //Method to add a year to the serviceYears array
+        this.addServiceYear = function (year) {
+          this.serviceYears.push(year);
+        };
+      }
+
+      //Dealership constructor
+      function Dealership(inventory, staff) {
+        this.inventory = inventory; //Array of Car objects
+        this.staff = staff; //Array of StaffMember objects
+
+        //Method to calculate the total value of all the cars in the inventory
+        this.inventoryValue = function () {
+          var total = 0;
+          for (var i = 0; i < this.inventory.length; i++) {
+            total += this.inventory[i].price;
+          }
+          return `$${total.toFixed(2)}`;
+        };
+      }
+
+      //Car objects
+      var car1 = new Car(
+        2022,
+        "Hyundai",
+        "Accent",
+        18000,
+        26500,
+        false,
+        [2021, 2022]
+      );
+      var car2 = new Car(
+        2000,
+        "Honda",
+        "Civic",
+        300000,
+        5500,
+        true,
+        [2005, 2010, 2015, 2017, 2021, 2022]
+      );
+      var car3 = new Car(2018, "Mitsubishi", "Outlander", 50000, 15050, false, [
+        2018,
+      ]);
+      var car4 = new Car(
+        2009,
+        "Jeep",
+        "Wrangler",
+        200001,
+        4200,
+        false,
+        [2011, 2015, 2019, 2022]
+      );
+      var car5 = new Car(2022, "Ford", "Focus", 12, 29800, false, []);
+      var car6 = new Car(2021, "Ford", "F150", 42000, 49999, true, [2021]);
+      var car7 = new Car(
+        2018,
+        "Tesla",
+        "Model S",
+        30290,
+        24999,
+        false,
+        [2019, 2020]
+      );
+      var car8 = new Car(
+        2005,
+        "Toyota",
+        "Corolla",
+        330789,
+        2300,
+        true,
+        [2008, 2010, 2012, 2015, 2018, 2020, 2022]
+      );
+      var car9 = new Car(2022, "Chevrolet", "Camero", 22, 67900, true, []);
+      var car10 = new Car(
+        1955,
+        "Ford",
+        "Thunderbird",
+        123022,
+        12900,
+        false,
+        [1960, 1970, 1999, 2015, 2020]
+      );
+
+      //Staff Member objects
+      var staff1 = new StaffMember(
+        "Helga",
+        "Ruut",
+        "CEO",
+        new Date("January 17, 2000")
+      );
+      var staff2 = new StaffMember(
+        "Jerrod",
+        "Amos",
+        "Sales",
+        new Date("March 1, 2021")
+      );
+      var staff3 = new StaffMember(
+        "Corbin",
+        "Maple",
+        "Sales",
+        new Date("July 8, 1997")
+      );
+      var staff4 = new StaffMember(
+        "Thorley",
+        "Demi",
+        "Sales",
+        new Date("January 30, 2021")
+      );
+      var staff5 = new StaffMember(
+        "Jaye",
+        "Kenneth",
+        "Manager",
+        new Date("May 12, 2016")
+      );
+      var staff6 = new StaffMember(
+        "Tanya",
+        "Kingsley",
+        "Manager",
+        new Date("December 21, 2021")
+      );
+      var staff7 = new StaffMember(
+        "Sara",
+        "Jaye",
+        "Sales",
+        new Date("September 28, 2004")
+      );
+
+      //Delership object
+      var londonDealership = new Dealership(
+        [car1, car2, car3, car4],
+        [staff2, staff5]
+      );
+      var stThomasDealership = new Dealership(
+        [car5, car6, car7, car8, car9, car10],
+        [staff3, staff4, staff6, staff7]
+      );
+
+      //IWDAutoSales and object representing a company
+      var IWDAutoSales = {
+        location: [londonDealership, stThomasDealership],
+        CEO: staff1,
+      };
+
+      /*
+      Lab 8 Questions:
+      Please answer the following questions by writing a statement to refer to a specific property/value:
+      Write your statements to the console please!
+      You should not just write the answer to the question as a string! If you do this you will get 0 on the whole assignment!
+      All your answers should start with the IWDAutoSales object
+      Using the dot notation to access object properties and call methods, square brackets [] to index arrays, you can use array/Date methods if needed
+      For example: Your responses should look something like book.title or library[7].genre.subgenre
+
+      */
+
+      console.log("Question 1:");
+      //Q1: Write a statement to access the first name of the CEO of IWD AutoSales
+      console.log(IWDAutoSales.CEO.firstName);
+
+      console.log("Question 2:");
+      //Q2: Write a statement to access how much does the car at index number 2 cost at the londonDealership?
+      console.log(IWDAutoSales.location[0].inventory[2].price);
+
+      console.log("Question 3:");
+      //Q3: Write a statement for how many times has the car the index number 3 at the stThomasDealership been serviced?
+      console.log(IWDAutoSales.location[1].inventory[3].serviceYears.length);
+
+      console.log("Question 4:");
+      //Q4: Write a statement for what month (0 is Jan, 11 is Dec) did the staff member at index 0 of the londonDealership start working
+      console.log(IWDAutoSales.location[0].staff[0].startDate.getMonth());
+
+      console.log("Question 5:");
+      //Q5: Write a statement for how many locations does IWDAutoSales have?
+      console.log(IWDAutoSales.location.length);
+
+      console.log("Question 6:");
+      //Q6: Using your method, what is the total value of all the cars at the stThomasDealership
+      console.log(IWDAutoSales.location[1].inventoryValue());
+
+      console.log("Question 7:");
+      //Q7: Using your method, has the car at index 3 of the londonDealership been serviced in 2022
+      console.log(IWDAutoSales.location[0].inventory[3].hasServiceYear(2022));
+
+      console.log("Question 8:");
+      //Q8: Using your method, how long in years has the staff at index 1 of the londonDealership been with the company
+      console.log(IWDAutoSales.location[0].staff[1].howManyYears() + " years");
+
+      console.log("Question 9:");
+      //Q9: Using your method, add service to the car at index 5 of the stThomasDealership
+      console.log(IWDAutoSales.location[1].inventory[5].addServiceYear(2022));
+
+      console.log("Question 10:");
+      //Q10: Write a statement to figure out if the car at index 0 of the londonDealership has been sold
+      console.log(IWDAutoSales.location[0].inventory[0].isSold);
+    </script>
+  </body>
+</html>
