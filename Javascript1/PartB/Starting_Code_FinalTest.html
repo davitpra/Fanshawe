@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Final Test Part B</title>
+  </head>
+  <style>
+    h1 {
+      text-align: left;
+    }
+    body {
+      font-family: Verdana;
+      font-size: 100%;
+      background-color: #d8e7ff;
+    }
+    input[type="number"] {
+      width: 40px;
+    }
+    .selection {
+      font-family: Verdana;
+      font-size: 11pt;
+      border: 1px solid #07a2fe;
+      color: black;
+      background-color: aliceblue;
+      height: 25px;
+      text-align: left;
+    }
+    .button {
+      font-family: Verdana;
+      background-color: aliceblue;
+      font-size: 12pt;
+      padding: 5px;
+    }
+    fieldset {
+      padding: 20px;
+    }
+    legend {
+      border: 1px solid black;
+      color: black;
+      font-size: 90%;
+      text-align: left;
+    }
+    .outputStyle {
+      color: #523620;
+      text-align: center;
+      margin: 20px 10px;
+      width: 550px;
+      height: auto;
+    }
+  </style>
+  <body>
+    <h1>Customer Data</h1>
+
+    <!-- Registration Form -->
+    <div>
+      <fieldset>
+        <legend>New Customer Form</legend>
+        First name:
+        <input type="text" id="tbFirstName" />
+        <br /><br />
+        Last name:
+        <input type="text" id="tbLastName" />
+        <br /><br />
+        City:
+        <input type="text" id="tbCity" />
+        Province:
+        <select id="ddProvince" class="selection">
+          <option>ON</option>
+          <option>BC</option>
+          <option>AB</option>
+          <option>SK</option>
+          <option>MB</option>
+          <option>QC</option>
+          <option>NB</option>
+          <option>NS</option>
+          <option>PE</option>
+          <option>NL</option>
+          <option>YT</option>
+          <option>NT</option>
+          <option>NU</option>
+        </select>
+        <br /><br />
+        Age:
+        <input type="number" id="tbAge" />
+        Gender:
+        <select id="ddGender" class="selection">
+          <option>Male</option>
+          <option>Female</option>
+        </select>
+        <br /><br />
+        <input type="button" id="btnSubmit" value="Submit" class="button" />
+      </fieldset>
+    </div>
+    <br /><br />
+
+    <!-- Customer List -->
+    <div>
+      <fieldset>
+        <legend>Customers</legend>
+        <div id="divCustomerOutput" class="outputStyle">
+          [Customer List Here]
+        </div>
+      </fieldset>
+    </div>
+    <br /><br />
+
+    <!-- Query Form -->
+    <div>
+      <fieldset>
+        <legend>Query</legend>
+        Gender:
+        <select id="ddQueryGender" class="selection">
+          <option>Male</option>
+          <option>Female</option>
+        </select>
+        Province:
+        <select id="ddQueryProvince" class="selection">
+          <option>ON</option>
+          <option>BC</option>
+          <option>AB</option>
+          <option>SK</option>
+          <option>MB</option>
+          <option>QC</option>
+          <option>NB</option>
+          <option>NS</option>
+          <option>PE</option>
+          <option>NL</option>
+          <option>YT</option>
+          <option>NT</option>
+          <option>NU</option>
+        </select>
+        Age:
+        <input type="number" id="tbQueryAge" value="18" />
+        &nbsp;
+        <input type="button" id="btnQuery" value="Query" class="button" />
+        <hr />
+        <div id="divQueryOutput" class="outputStyle">[Query Output Here]</div>
+      </fieldset>
+    </div>
+
+    <!-- Javascript -->
+    <script>
+      //2. Declare an empty Customer Array to store the objects
+      const CustomerArray = [];
+
+      //3. Write a Customer Constructor
+      function Customer({
+        FistName = "",
+        LastName = "",
+        City = "",
+        Province = "",
+        Age = 0,
+        Gender = "",
+      }) {
+        this.FistName = FistName;
+        this.LastName = LastName;
+        this.City = City;
+        this.Province = Province;
+        this.Age = Age;
+        this.Gender = Gender;
+
+        this.toString = function () {
+          let output = "";
+          output = `${FistName} ${LastName} is a ${Age} year old ${Gender} from ${City}, ${Province}.`;
+          return output;
+        };
+      }
+
+      //4. Create 5 samples of customer Objects as showing below
+      var costumer1 = new Customer({
+        FistName: "John",
+        LastName: "Smith",
+        City: "London",
+        Province: "ON",
+        Age: 17,
+        Gender: "Male",
+      });
+      var costumer2 = new Customer({
+        FistName: "Pauline",
+        LastName: "MacIntyre",
+        City: "Sydney",
+        Province: "NS",
+        Age: 25,
+        Gender: "Female",
+      });
+      var costumer3 = new Customer({
+        FistName: "Kevin",
+        LastName: "Firth",
+        City: "London",
+        Province: "ON",
+        Age: 41,
+        Gender: "Male",
+      });
+      var costumer4 = new Customer({
+        FistName: "Carol",
+        LastName: "Green",
+        City: "London",
+        Province: "ON",
+        Age: 23,
+        Gender: "Female",
+      });
+      var costumer5 = new Customer({
+        FistName: "Lynda",
+        LastName: "Reynolds",
+        City: "Winnipeg",
+        Province: "MB",
+        Age: 37,
+        Gender: "Female",
+      });
+
+      //4. Pushing Customer Objects to Customer Array
+      CustomerArray.push(costumer1);
+      CustomerArray.push(costumer2);
+      CustomerArray.push(costumer3);
+      CustomerArray.push(costumer4);
+      CustomerArray.push(costumer5);
+
+      //5. Displaying Customer Array calling toString method
+      function displayCustomers() {
+        let output = "";
+        for (let i = 0; i < CustomerArray.length; i++) {
+          output += CustomerArray[i].toString() + "<br>";
+        }
+        document.getElementById("divCustomerOutput").innerHTML = output;
+      }
+
+      //5. Calling displayCustomers function
+      displayCustomers();
+
+      //6. NODE HTML FORM
+      const FistName = document.getElementById("tbFirstName");
+      const LastName = document.getElementById("tbLastName");
+      const City = document.getElementById("tbCity");
+      const Province = document.getElementById("ddProvince");
+      const Age = document.getElementById("tbAge");
+      const Gender = document.getElementById("ddGender");
+      const btnSubmit = document.getElementById("btnSubmit");
+
+      //6. function to create new customer object and push it to the array
+      function registerCustomer() {
+        // 6.0. Check if all fields are filled
+        if (
+          FistName.value === "" ||
+          LastName.value === "" ||
+          City.value === "" ||
+          Age.value === ""
+        ) {
+          alert("Please fill in all fields.");
+          return;
+        }
+
+        //6.1 create a Customer object
+        let customer = new Customer({
+          FistName: FistName.value,
+          LastName: LastName.value,
+          City: City.value,
+          Province: Province.value,
+          Age: Age.value,
+          Gender: Gender.value,
+        });
+
+        //6.2 Push the object to the array
+        CustomerArray.push(customer);
+
+        //6.3 Clear the form
+        FistName.value = "";
+        LastName.value = "";
+        City.value = "";
+        Province.value = "ON";
+        Age.value = "";
+        Gender.value = "Male";
+
+        //6.4 Display the array
+        displayCustomers();
+      }
+
+      //6.5 add an event listener on the submit button
+      btnSubmit.addEventListener("click", registerCustomer);
+
+      //7. NODE HTML FORM
+      const divQueryOutput = document.getElementById("divQueryOutput");
+      const ddQueryGender = document.getElementById("ddQueryGender");
+      const ddQueryProvince = document.getElementById("ddQueryProvince");
+      const tbQueryAge = document.getElementById("tbQueryAge");
+      const btnQuery = document.getElementById("btnQuery");
+      //7. Function to query the data
+      function queryData() {
+        //7.0 Declare variables
+        let output = "";
+        let gender = ddQueryGender.value;
+        let province = ddQueryProvince.value;
+        let age = tbQueryAge.value;
+
+        //7.0 Clear the output div
+        divQueryOutput.innerHTML = output;
+
+        //7.1 Total number of customers
+        let totalCustomers = CustomerArray.length;
+
+        //7.2 Total number of customers by gender
+        let totalCustomersByGender = 0;
+        for (let i = 0; i < CustomerArray.length; i++) {
+          if (gender === CustomerArray[i].Gender) {
+            totalCustomersByGender++;
+          }
+        }
+
+        //7.3 Total number of customers by province
+        let totalCustomersByProvince = 0;
+        for (let i = 0; i < CustomerArray.length; i++) {
+          if (province === CustomerArray[i].Province) {
+            totalCustomersByProvince++;
+          }
+        }
+
+        //7.4 Total number of customers by age
+        let totalCustomersByAge = 0;
+        for (let i = 0; i < CustomerArray.length; i++) {
+          if (age <= CustomerArray[i].Age) {
+            totalCustomersByAge++;
+          }
+        }
+
+        //7.5 Get the output
+        output = `Total number of customers: ${totalCustomers} <br>
+				Number of customers living in ${province}: ${totalCustomersByProvince} <br>
+				Number of customers who are ${gender}: ${totalCustomersByGender} <br>
+				Number of customers ${age} or older: ${totalCustomersByAge} <br>`;
+        //7.6 Display the output
+        divQueryOutput.innerHTML = output;
+      }
+      //7.7 Add an event listener on the query button
+      btnQuery.addEventListener("click", queryData);
+    </script>
+  </body>
+</html>
